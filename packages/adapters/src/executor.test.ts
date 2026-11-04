@@ -2118,6 +2118,7 @@ describe("createRunExecutor", () => {
           routine: {
             updateMany,
             findUnique: vi.fn(async () => ({
+              prompt: "say hi",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2191,6 +2192,7 @@ describe("createRunExecutor", () => {
           routine: {
             updateMany,
             findUnique: vi.fn(async () => ({
+              prompt: "say hi",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2273,7 +2275,8 @@ describe("createRunExecutor", () => {
           callback({
             routine: {
               updateMany: vi.fn(async () => ({ count: 1 })),
-              findUnique: vi.fn(async () => claimedModel),
+              // The claimed row carries the prompt alongside the model.
+              findUnique: vi.fn(async () => ({ prompt: "say hi", ...claimedModel })),
             },
             task: { create: taskCreate },
             run: {
@@ -2424,6 +2427,7 @@ describe("createRunExecutor", () => {
           routine: {
             updateMany: vi.fn(async () => ({ count: 1 })),
             findUnique: vi.fn(async () => ({
+              prompt: "remind the group",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2500,6 +2504,7 @@ describe("createRunExecutor", () => {
           routine: {
             updateMany: vi.fn(async () => ({ count: 1 })),
             findUnique: vi.fn(async () => ({
+              prompt: "remind me",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2593,6 +2598,7 @@ description: Prepare standup notes
           routine: {
             updateMany: vi.fn(async () => ({ count: 1 })),
             findUnique: vi.fn(async () => ({
+              prompt: "Run @Daily standup, then email me",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2653,6 +2659,7 @@ description: Prepare standup notes
           routine: {
             updateMany,
             findUnique: vi.fn(async () => ({
+              prompt: "say hi",
               modelProvider: null,
               modelId: null,
               thinkingLevel: null,
@@ -2718,6 +2725,7 @@ description: Prepare standup notes
             routine: {
               updateMany: claimUpdateMany,
               findUnique: vi.fn(async () => ({
+                prompt: "say hi",
                 modelProvider: null,
                 modelId: null,
                 thinkingLevel: null,
