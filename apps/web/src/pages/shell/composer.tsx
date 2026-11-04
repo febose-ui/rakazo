@@ -53,6 +53,7 @@ import { isFileDrag, isFilePaste } from "../../lib/pending-attachments";
 import { ComposerReplyPreview } from "./chat-context";
 import type { PendingAttachment } from "./chat-shared";
 import { previewMessageText } from "./chat-shared";
+import { useComposerCommands } from "./composer-commands";
 import { ComposerError } from "./composer-error";
 import {
   ComposerChip,
@@ -258,6 +259,20 @@ const ComposerBody = memo(function Composer({
       }),
     [pageSession, draftKey],
   );
+  // Shell keyboard shortcuts drive this composer without owning its chords.
+  useComposerCommands({
+    send: () => void send(),
+    addText: (text) => {
+      clearReply.current?.();
+      const current = compositionRef.current.text;
+      editSelections.current = [{ start: current.length, end: current.length }];
+      const next = current.trim() ? `${current.trimEnd()} ${text}` : text;
+      updateDraft(next);
+      pendingCaret.current = { start: next.length, end: next.length };
+      textareaRef.current?.focus();
+    },
+    focusPrompt: () => textareaRef.current?.focus(),
+  });
   const [replyAnnouncement, setReplyAnnouncement] = useState("");
   // What the live region currently holds — a send disarming the reply clears
   // "reply" text, while an explicit cancel must keep "Reply cancelled".
@@ -884,6 +899,17 @@ const ComposerBody = memo(function Composer({
                 if (action.type === "send") {
                   event.preventDefault();
                   void send();
+                  return;
+                }
+                // The dictate chord belongs to the focused prompt, matching the docs.
+                if (
+                  event.key.toLowerCase() === "d" &&
+                  (event.metaKey || event.ctrlKey) &&
+                  !event.shiftKey &&
+                  !event.altKey
+                ) {
+                  event.preventDefault();
+                  talk.startLocked();
                   return;
                 }
                 if (

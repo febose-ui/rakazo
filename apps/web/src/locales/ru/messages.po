@@ -607,6 +607,10 @@ msgstr "Добавить поставщика"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "Добавить выделенный текст в чат
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "Добавить сервер"
@@ -1406,6 +1410,7 @@ msgstr "Очистка…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "Закрыть"
@@ -1417,6 +1422,10 @@ msgstr "Закрыть график"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "Закрыть компьютер"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "Закрыть панель поиска
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr ""
 msgid "Compact"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "Компактная боковая панель
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "Завершить"
@@ -1650,6 +1663,7 @@ msgstr "Подключить API-ключ"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "Подключить приложения"
 
@@ -1754,6 +1768,10 @@ msgstr ""
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "Продолжить с {0}"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "Сведения о беседе
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "Настроить: {label}"
 msgid "Customize bot avatar"
 msgstr "Настроить аватар бота"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "Переключение ботов
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "Ежедневные напоминания о незавершённой работе"
@@ -2664,6 +2686,10 @@ msgstr "Подробности"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "Продиктовать в поле ввода
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "Найти страницу"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "Поиск в этом чате
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "Завершено."
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "Завершение подключения MCP…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "Фокус на поле ввода
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "Его диалог, файлы и задачи будут безвоз�
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "Общая ссылка перестанет работать, а карточки в чате будут показаны как удалённые. Это нельзя отменить."
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "Переход / палитра поиска
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "Перейти к последнему"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "ключ"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "Сочетания клавиш
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr "Новые"
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "Новый бот"
 
@@ -4149,8 +4194,13 @@ msgstr "Новая группа"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "Новый групповой чат"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "Новая строка
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "Предварительный просмотр {0}"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "Предыдущий / следующий бот
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "Поиск приложений"
 msgid "Search artifacts…"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "Поиск ботов
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "Свой сервер"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "Отправить"
 
@@ -5673,6 +5732,10 @@ msgstr "Показать"
 msgid "Show all"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "Показать все сочетания клавиш
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "Показать ботов"
@@ -5703,6 +5766,10 @@ msgstr ""
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "Показать расшифровку"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "Боты на боковой панели 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "К:"
 msgid "Today"
 msgstr "Сегодня"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "Переключить настройки бота
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "Токены"
@@ -6724,6 +6795,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "История посещений
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

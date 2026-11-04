@@ -607,6 +607,10 @@ msgstr "प्रोवाइडर जोड़ें"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "चुना हुआ टेक्स्ट चैट में जोड़ें
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "सर्वर जोड़ें"
@@ -1406,6 +1410,7 @@ msgstr "साफ़ किया जा रहा है…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "बंद करें"
@@ -1417,6 +1422,10 @@ msgstr "चार्ट बंद करें"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "कंप्यूटर बंद करें"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "खोज पट्टी बंद करें
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr ""
 msgid "Compact"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "कॉम्पैक्ट साइडबार
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "पूर्ण"
@@ -1650,6 +1663,7 @@ msgstr "API कुंजी कनेक्ट करें"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "ऐप कनेक्ट करें"
 
@@ -1754,6 +1768,10 @@ msgstr ""
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "{0} के साथ जारी रखें"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "बातचीत का विवरण
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "{label} अनुकूलित करें"
 msgid "Customize bot avatar"
 msgstr "बॉट अवतार अनुकूलित करें"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "बॉट बदलें
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "अधूरे काम पर रोज़ पूछें"
@@ -2664,6 +2686,10 @@ msgstr "विवरण"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "कंपोज़र में बोलकर लिखें
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "पेज खोजें"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "इस चैट में खोजें
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "पूरा हुआ।"
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "MCP कनेक्शन पूरा हो रहा है…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "कंपोज़र पर फ़ोकस करें
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "इसकी बातचीत, फ़ाइलें और रूट�
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "इसका शेयर किया गया लिंक काम करना बंद कर देगा और चैट में इसके कार्ड हटाए गए दिखेंगे। इसे पूर्ववत नहीं किया जा सकता।"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "जाएँ / खोज पैलेट
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "नवीनतम संदेश पर जाएँ"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr ""
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "कीबोर्ड शॉर्टकट
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr ""
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "नया बॉट"
 
@@ -4149,8 +4194,13 @@ msgstr "नया समूह"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "नई ग्रुप चैट"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "नई पंक्ति
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "{0} का प्रीव्यू"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "पिछला / अगला बॉट
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "ऐप खोजें"
 msgid "Search artifacts…"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "बॉट खोजें
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "सेल्फ़-होस्टेड"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "भेजें"
 
@@ -5673,6 +5732,10 @@ msgstr "दिखाएँ"
 msgid "Show all"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "सभी कीबोर्ड शॉर्टकट दिखाएँ
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr ""
@@ -5703,6 +5766,10 @@ msgstr ""
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "ट्रांसक्रिप्ट दिखाएँ"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "साइडबार बॉट 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "प्रति:"
 msgid "Today"
 msgstr "आज"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "बॉट सेटिंग्स टॉगल करें
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "टोकन"
@@ -6724,6 +6795,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "विज़िट इतिहास
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

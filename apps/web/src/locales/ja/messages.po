@@ -607,6 +607,10 @@ msgstr "プロバイダーを追加"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "選択したテキストをチャットに追加
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "サーバーを追加"
@@ -1406,6 +1410,7 @@ msgstr "クリア中…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "閉じる"
@@ -1417,6 +1422,10 @@ msgstr "チャートを閉じる"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "コンピューターを閉じる"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "検索バーを閉じる
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr ""
 msgid "Compact"
 msgstr "コンパクト"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "コンパクトなサイドバー
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "完了"
@@ -1650,6 +1663,7 @@ msgstr "APIキーを接続"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "アプリを接続"
 
@@ -1754,6 +1768,10 @@ msgstr "購入手続きへ進む"
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "{0}で続行"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "会話の詳細
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "{label}をカスタマイズ"
 msgid "Customize bot avatar"
 msgstr "ボットのアバターをカスタマイズ"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "ボットを順に切り替え
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "未完了の作業を毎日確認"
@@ -2664,6 +2686,10 @@ msgstr "詳細"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "入力欄に音声入力
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "ページを検索"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "このチャット内を検索
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "完了しました。"
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "MCP接続を完了しています…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "入力欄にフォーカス
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "会話、ファイル、ルーティンは完全に削除されます。
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "共有リンクは使えなくなり、チャット内のカードは削除済みと表示されます。元に戻すことはできません。"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "ジャンプ / 検索パレット
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "最新へ移動"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "キー"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "キーボードショートカット
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr "新規"
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "新しいボット"
 
@@ -4149,8 +4194,13 @@ msgstr "新しいグループ"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "新しいグループチャット"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "改行
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "{0}をプレビュー"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr "このファイル形式はプレビューできません。ダウンロードして表示してください。"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "前 / 次のボット
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "アプリを検索"
 msgid "Search artifacts…"
 msgstr "アーティファクトを検索…"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "ボットを検索
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "セルフホスト"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "送信"
 
@@ -5673,6 +5732,10 @@ msgstr "表示"
 msgid "Show all"
 msgstr "すべて表示"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "すべてのキーボードショートカットを表示
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "ボットを表示"
@@ -5703,6 +5766,10 @@ msgstr "ツールのアクティビティを表示"
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "文字起こしを表示"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "サイドバーのボット 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "宛先:"
 msgid "Today"
 msgstr "今日"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "ボット設定を切り替え
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "トークン"
@@ -6724,6 +6795,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "閲覧履歴
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

@@ -607,6 +607,10 @@ msgstr "הוספת ספק"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "הוספת הטקסט הנבחר לצ'אט
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "הוספת שרת"
@@ -1406,6 +1410,7 @@ msgstr "מנקה…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "סגירה"
@@ -1417,6 +1422,10 @@ msgstr "סגירת התרשים"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "סגירת המחשב"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "סגירת סרגל החיפוש
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr ""
 msgid "Compact"
 msgstr "צפוף"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "סרגל צד מצומצם
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "הושלם"
@@ -1650,6 +1663,7 @@ msgstr "חיבור מפתח API"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "חיבור אפליקציות"
 
@@ -1754,6 +1768,10 @@ msgstr ""
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "המשך עם {0}"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "פרטי השיחה
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "התאמה אישית של {label}"
 msgid "Customize bot avatar"
 msgstr "התאמת תמונת הבוט"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "מעבר בין בוטים
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "מעקב יומי אחר עבודה שלא הושלמה"
@@ -2664,6 +2686,10 @@ msgstr "פרטים"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "להכתיב לשדה ההודעה
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "חיפוש דף"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "חיפוש בצ'אט הזה
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "הסתיים."
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "משלים את חיבור ה-MCP…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "מיקוד שדה ההודעה
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "השיחה, הקבצים והרוטינות שלו יימחקו לצמי
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "הקישור המשותף יפסיק לעבוד והכרטיסים שלו בצ'אט יוצגו כמחוקים. אי אפשר לבטל את הפעולה."
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "מעבר / לוח חיפוש
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "מעבר לאחרונות"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "מפתח"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "קיצורי מקלדת
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr ""
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "בוט חדש"
 
@@ -4149,8 +4194,13 @@ msgstr "קבוצה חדשה"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "צ'אט קבוצתי חדש"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "שורה חדשה
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "תצוגה מקדימה של {0}"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr "תצוגה מקדימה אינה זמינה לסוג הקובץ הזה — אפשר להוריד אותו כדי לצפות בו."
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "הבוט הקודם / הבא
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "חיפוש אפליקציות"
 msgid "Search artifacts…"
 msgstr "חיפוש תוצרים…"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "חיפוש בוטים
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "באירוח עצמי"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "שליחה"
 
@@ -5673,6 +5732,10 @@ msgstr "הצגה"
 msgid "Show all"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "הצגת כל קיצורי המקלדת
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "הצגת בוטים"
@@ -5703,6 +5766,10 @@ msgstr "הצגת פעילות כלים"
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "הצגת תמליל"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "בוטים בסרגל הצד 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "אל:"
 msgid "Today"
 msgstr "היום"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "החלפת הגדרות הבוט
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "טוקנים"
@@ -6724,6 +6795,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "היסטוריית ביקורים
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

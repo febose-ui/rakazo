@@ -28,6 +28,7 @@ import {
   NewSpaceDialog,
   RenameBotSectionDialog,
 } from "./dialogs";
+import { ShortcutsDialog } from "./shortcuts-dialog";
 
 type ChatTarget = { kind: "bot"; chat: Bot } | { kind: "group"; chat: Group };
 type SectionTarget = { section: BotSection; spaceId: string };
@@ -55,6 +56,7 @@ export function useShellDialogs() {
   const [newSpaceOpen, setNewSpaceOpen] = useState(false);
   const [createBotOpen, setCreateBotOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   return {
     deleteTarget,
     setDeleteTarget,
@@ -80,6 +82,8 @@ export function useShellDialogs() {
     setCreateBotOpen,
     commandPaletteOpen,
     setCommandPaletteOpen,
+    shortcutsOpen,
+    setShortcutsOpen,
   };
 }
 
@@ -148,6 +152,8 @@ export function ShellDialogs({
     setCreateBotOpen,
     commandPaletteOpen,
     setCommandPaletteOpen,
+    shortcutsOpen,
+    setShortcutsOpen,
   } = dialogs;
   const spaceMenuTarget = spaceMenu
     ? (spaces.find((space) => space.id === spaceMenu.id) ?? null)
@@ -327,6 +333,7 @@ export function ShellDialogs({
         }))}
       />
 
+      {shortcutsOpen ? <ShortcutsDialog open onClose={() => setShortcutsOpen(false)} /> : null}
       {createBotOpen ? (
         <CreateBotDialog onCancel={() => setCreateBotOpen(false)} onCreate={createBot} />
       ) : null}

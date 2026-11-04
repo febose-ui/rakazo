@@ -22,7 +22,7 @@ import type { GroupAvatarMember } from "@rakazo/ui-web";
 import { Button } from "@rakazo/ui-web";
 import { useIsMobile } from "@rakazo/ui-web/hooks/use-mobile";
 import { useQuery } from "@tanstack/react-query";
-import { Lock, Monitor, Moon, Plug, Plus, ScrollText, Sun, Users } from "lucide-react";
+import { Keyboard, Lock, Monitor, Moon, Plug, Plus, ScrollText, Sun, Users } from "lucide-react";
 import {
   Suspense,
   useCallback,
@@ -79,9 +79,11 @@ import { ChatHeader } from "./shell/chat-header";
 import { FALLBACK_BOT_COLOR } from "./shell/chat-shared";
 import type { CommandPaletteAction } from "./shell/command-palette";
 import { Composer } from "./shell/composer";
+import { dispatchComposerCommand } from "./shell/composer-commands";
 import { ComputerOverlay } from "./shell/computer-overlay";
 import { ComputerPanel } from "./shell/computer-panel";
 import type { CreateBotDialogInput } from "./shell/create-bot-dialog";
+import { FindBar } from "./shell/find-in-chat";
 import type { ImportSetupTarget } from "./shell/import-setup-card";
 import { ShellDialogs, useShellDialogs } from "./shell/shell-dialogs";
 import { AppOverlays, SettingsOverlays } from "./shell/shell-overlays";
@@ -315,6 +317,7 @@ function SpaceShell() {
     [bots, botSections],
   );
   const dialogs = useShellDialogs();
+  const [findOpen, setFindOpen] = useState(false);
   useShellShortcuts({
     run: (shortcut) => {
       switch (shortcut.type) {
@@ -323,6 +326,9 @@ function SpaceShell() {
           return true;
         case "new":
           setCreateMenuOpen(true);
+          return true;
+        case "shortcuts-help":
+          dialogs.setShortcutsOpen(true);
           return true;
         case "back":
         case "forward":
@@ -343,8 +349,55 @@ function SpaceShell() {
         focusSidebarSearch();
         return true;
       }
+      if (shortcut.type === "find-in-chat") {
+        if (!active && !activeGroup) return false;
+        setFindOpen(true);
+        return true;
+      }
+      if (shortcut.type === "connect-apps") {
+        setOverlay({ kind: "integrations" });
+        return true;
+      }
       // The command menu picks its own Cmd/Ctrl+1–9 from what it lists.
       if (hasOpenDialog(document, true)) return false;
+      if (shortcut.type === "focus-prompt" || shortcut.type === "add-selected-text") {
+        const selection =
+          shortcut.type === "add-selected-text"
+            ? (window.getSelection()?.toString() ?? "").trim()
+            : "";
+        if (selection.length > 0) {
+          dispatchComposerCommand({ kind: "add-text", text: selection });
+          return true;
+        }
+        if (!dispatchComposerCommand({ kind: "focus-prompt" })) {
+          document
+            .querySelector<HTMLTextAreaElement>('textarea[name="chat-message"]:not(:disabled)')
+            ?.focus();
+        }
+        return true;
+      }
+      if (shortcut.type === "send") return dispatchComposerCommand({ kind: "send" });
+      if (shortcut.type === "bot-settings") {
+        if (inGroup || activeGroup) {
+          setPanel(panel === "group-settings" ? null : "group-settings");
+          return true;
+        }
+        if (active) {
+          setPanel(panel === "settings" ? null : "settings");
+          return true;
+        }
+        return false;
+      }
+      if (shortcut.type === "conversation-details") {
+        if (chatPanelOpen) setPanel(null);
+        else if (inGroup) setPanel("group-settings");
+        else if (active) {
+          setPanel(lastBotTab.current);
+          // Refresh run/computer so Take control isn't stuck on a stale busyBotName.
+          void refreshThread(active.id).catch(() => undefined);
+        } else return false;
+        return true;
+      }
       const botId =
         shortcut.type === "bot"
           ? cycleBots[shortcut.index]?.id
@@ -829,6 +882,12 @@ function SpaceShell() {
       checked: getUiAppearancePreference() === value,
       onSelect: () => setUiAppearance(value),
     })),
+    {
+      id: "shortcuts",
+      label: t`Keyboard shortcuts`,
+      icon: Keyboard,
+      onSelect: () => dialogs.setShortcutsOpen(true),
+    },
   ];
 
   async function renameSpace(spaceId: string, name: string) {
@@ -1042,49 +1101,54 @@ function SpaceShell() {
               </Button>
             </div>
           ) : (
-            <Transcript
-              key={activeSnapshot?.threadId}
-              scrollRef={thread.messageScroll}
-              scrollRequest={scrollRequest}
-              onScrollRequestHandled={clearScrollRequest}
-              followRequest={composer.sentCount}
-              artifactTarget={transcriptArtifactTarget}
-              markedUnreadMessageId={read.markedUnreadMessageId}
-              transcript={transcript}
-              showToolActivity={showToolActivity}
-              olderCursor={activeSnapshot?.olderCursor ?? null}
-              unreadAfterSeq={read.unreadAfterSeq}
-              loadingOlder={loadingOlder}
-              answerableAskIds={answerableAskIds}
-              dismissableAskIds={dismissableAskIds}
-              running={transcriptRunning}
-              workingBots={workingBots}
-              userBubble={userBubble}
-              onCallBack={
-                bootstrapMe?.phoneCallsEnabled && !inGroup && active
-                  ? () => callBot(active)
-                  : undefined
-              }
-              onLoadOlder={loadOlder}
-              onOpenBot={openBot}
-              onAnswer={composer.answerMessage}
-              onReply={replyToMessage}
-              onMarkUnread={markMessageUnread}
-              onQuote={quoteMessage}
-              onReact={composer.reactToMessage}
-              onJumpToMessage={jumpToReplyMessage}
-              onOpenPeerMessages={openPeerMessages}
-              memberName={resolveTranscriptMemberName}
-              peerBot={resolveTranscriptBot}
-              onRefresh={refreshActiveThread}
-              onBotChanged={refreshBots}
-              onAddRoutine={addSkillRoutine}
-              voiceReady={Boolean(voiceStatus?.ready)}
-              speakingMessageId={speakingMessageId}
-              onSpeak={speakMessage}
-              onOpenComputer={computerControls.onOpenComputer}
-              onOpenImportSetup={openImportSetup}
-            />
+            <>
+              {findOpen ? (
+                <FindBar key={activeSnapshot?.threadId} onClose={() => setFindOpen(false)} />
+              ) : null}
+              <Transcript
+                key={activeSnapshot?.threadId}
+                scrollRef={thread.messageScroll}
+                scrollRequest={scrollRequest}
+                onScrollRequestHandled={clearScrollRequest}
+                followRequest={composer.sentCount}
+                artifactTarget={transcriptArtifactTarget}
+                markedUnreadMessageId={read.markedUnreadMessageId}
+                transcript={transcript}
+                showToolActivity={showToolActivity}
+                olderCursor={activeSnapshot?.olderCursor ?? null}
+                unreadAfterSeq={read.unreadAfterSeq}
+                loadingOlder={loadingOlder}
+                answerableAskIds={answerableAskIds}
+                dismissableAskIds={dismissableAskIds}
+                running={transcriptRunning}
+                workingBots={workingBots}
+                userBubble={userBubble}
+                onCallBack={
+                  bootstrapMe?.phoneCallsEnabled && !inGroup && active
+                    ? () => callBot(active)
+                    : undefined
+                }
+                onLoadOlder={loadOlder}
+                onOpenBot={openBot}
+                onAnswer={composer.answerMessage}
+                onReply={replyToMessage}
+                onMarkUnread={markMessageUnread}
+                onQuote={quoteMessage}
+                onReact={composer.reactToMessage}
+                onJumpToMessage={jumpToReplyMessage}
+                onOpenPeerMessages={openPeerMessages}
+                memberName={resolveTranscriptMemberName}
+                peerBot={resolveTranscriptBot}
+                onRefresh={refreshActiveThread}
+                onBotChanged={refreshBots}
+                onAddRoutine={addSkillRoutine}
+                voiceReady={Boolean(voiceStatus?.ready)}
+                speakingMessageId={speakingMessageId}
+                onSpeak={speakMessage}
+                onOpenComputer={computerControls.onOpenComputer}
+                onOpenImportSetup={openImportSetup}
+              />
+            </>
           )}
         </div>
         {active || activeGroup ? (

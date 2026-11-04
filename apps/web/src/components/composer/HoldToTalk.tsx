@@ -126,6 +126,11 @@ export function useHoldToTalk({
     notice,
     submit,
     cancel,
+    /** The keyboard's own way to hold: dicts stay recording until submitted. */
+    startLocked: () => {
+      if (disabled || recordingRef.current) return;
+      start(true);
+    },
     buttonProps: {
       onPointerDown: (event: PointerEvent<HTMLButtonElement>) => {
         if (disabled || event.button !== 0 || recordingRef.current) return;

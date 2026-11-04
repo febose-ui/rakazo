@@ -607,6 +607,10 @@ msgstr "Aanbieder toevoegen"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "Geselecteerde tekst aan de chat toevoegen
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "Server toevoegen"
@@ -1406,6 +1410,7 @@ msgstr "Bezig met wissen…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "Sluiten"
@@ -1417,6 +1422,10 @@ msgstr "Grafiek sluiten"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "Computer sluiten"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "Zoekbalk sluiten
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr ""
 msgid "Compact"
 msgstr "Compact"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "Compacte zijbalk
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "Voltooid"
@@ -1650,6 +1663,7 @@ msgstr "API-sleutel koppelen"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "Apps verbinden"
 
@@ -1754,6 +1768,10 @@ msgstr ""
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "Doorgaan met {0}"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "Gespreksdetails
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "{label} aanpassen"
 msgid "Customize bot avatar"
 msgstr "Botavatar aanpassen"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "Door bots bladeren
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "Dagelijks navragen over onafgemaakt werk"
@@ -2664,6 +2686,10 @@ msgstr "Details"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "In het invoervak diceren
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "Pagina zoeken"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "In deze chat zoeken
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "Voltooid."
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "MCP-verbinding afronden…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "Invoervak focus geven
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "Het gesprek, de bestanden en de routines worden definitief verwijderd. B
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "De gedeelde link werkt dan niet meer en de kaarten in de chat tonen hem als verwijderd. Dit kan niet ongedaan worden gemaakt."
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "Springen / zoekpalet
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "Naar het nieuwste springen"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "sleutel"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr "Nieuw"
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "Nieuwe bot"
 
@@ -4149,8 +4194,13 @@ msgstr "Nieuwe groep"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "Nieuwe groepschat"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "Nieuwe regel
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "{0} bekijken"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr "Een voorbeeld is niet beschikbaar voor dit bestandstype — download het om het te bekijken."
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "Vorige / volgende bot
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "Apps zoeken"
 msgid "Search artifacts…"
 msgstr "Artefacten zoeken…"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "Bots doorzoeken
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "Zelf gehost"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "Verzenden"
 
@@ -5673,6 +5732,10 @@ msgstr "Tonen"
 msgid "Show all"
 msgstr "Alles tonen"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "Alle sneltoetsen tonen
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "Bots tonen"
@@ -5703,6 +5766,10 @@ msgstr "Toolactiviteit tonen"
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "Transcript tonen"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "Zijbalk-bots 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "Aan:"
 msgid "Today"
 msgstr "Vandaag"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "Botinstellingen in- en uitschakelen
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "Tokens"
@@ -6724,6 +6795,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "Bezoekgeschiedenis
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

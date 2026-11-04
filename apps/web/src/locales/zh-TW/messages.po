@@ -608,6 +608,10 @@ msgstr "新增供應商"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "將所選內容加入聊天
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "新增伺服器"
@@ -1407,6 +1411,7 @@ msgstr "正在清空…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "關閉"
@@ -1418,6 +1423,10 @@ msgstr "關閉圖表"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "關閉電腦"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "關閉尋找列
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1536,6 +1545,10 @@ msgstr ""
 msgid "Compact"
 msgstr "緊湊"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "精簡側欄
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "完成"
@@ -1651,6 +1664,7 @@ msgstr "連線 API 金鑰"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "連接應用程式"
 
@@ -1755,6 +1769,10 @@ msgstr "繼續結帳"
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "透過 {0} 繼續"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "會話詳情
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2488,6 +2506,10 @@ msgstr "自訂{label}"
 msgid "Customize bot avatar"
 msgstr "自訂機器人頭像"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "循環切換機器人
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "每天追蹤未完成的工作"
@@ -2665,6 +2687,10 @@ msgstr "詳細資訊"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "語音輸入到撰寫框
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3102,6 +3128,11 @@ msgstr ""
 msgid "Find a page"
 msgstr "尋找頁面"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "在目前聊天中尋找
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3132,6 +3163,10 @@ msgstr "已完成。"
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "正在完成 MCP 連線…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "聚焦輸入框
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3536,6 +3571,10 @@ msgstr "它的對話、檔案和例行任務將被永久刪除。它建立的機
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "其共用連結將失效，聊天中的卡片會顯示為已刪除。此操作無法復原。"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "跳躍 / 搜尋面板
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "跳到最新"
@@ -3559,6 +3598,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "金鑰"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "鍵盤快速鍵
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4137,6 +4181,7 @@ msgstr "新增"
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "新增機器人"
 
@@ -4150,8 +4195,13 @@ msgstr "新增群組"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "新增群組聊天"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "換行
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4785,6 +4835,10 @@ msgstr "預覽 {0}"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr "此檔案類型無法預覽，請下載後檢視。"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "上一個 / 下一個機器人
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5484,6 +5538,10 @@ msgstr "搜尋應用程式"
 msgid "Search artifacts…"
 msgstr "搜尋成品…"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "搜尋機器人
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5538,6 +5596,7 @@ msgid "Self-hosted"
 msgstr "自行託管"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "傳送"
 
@@ -5674,6 +5733,10 @@ msgstr "顯示"
 msgid "Show all"
 msgstr "顯示全部"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "顯示所有鍵盤快速鍵
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "顯示機器人"
@@ -5704,6 +5767,10 @@ msgstr "顯示工具活動"
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "顯示文字紀錄"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "側欄機器人 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6399,6 +6466,10 @@ msgstr "收件人："
 msgid "Today"
 msgstr "今天"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "切換机器人設定
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "Token"
@@ -6725,6 +6796,10 @@ msgstr ""
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr ""
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "造訪紀錄
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx

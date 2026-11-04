@@ -43,7 +43,10 @@ describe("shellShortcut", () => {
     expect(shellShortcut(keyEvent({ key: "k", metaKey: true, shiftKey: true }), macApp)).toBeNull();
     expect(shellShortcut(keyEvent({ key: "k", metaKey: true, altKey: true }), macApp)).toBeNull();
     expect(shellShortcut(keyEvent({ key: "k", metaKey: true, repeat: true }), macApp)).toBeNull();
-    expect(shellShortcut(keyEvent({ key: "n", metaKey: true, shiftKey: true }), macApp)).toBeNull();
+    // Cmd+Shift+N makes a group chat in the desktop app.
+    expect(shellShortcut(keyEvent({ key: "n", metaKey: true, shiftKey: true }), macApp)).toEqual({
+      type: "new-group",
+    });
   });
 
   it("toggles the sidebar with Cmd on Apple keyboards and Ctrl elsewhere", () => {
@@ -70,13 +73,19 @@ describe("shellShortcut", () => {
     expect(shellShortcut(keyEvent({ key: "ArrowLeft", altKey: true }), windowsBrowser)).toBeNull();
   });
 
-  it("searches and jumps to the first nine bots in the desktop app", () => {
+  it("searches and finds in the desktop app; Shift searches bots first", () => {
     expect(shellShortcut(keyEvent({ key: "f", metaKey: true }), macApp)).toEqual({
-      type: "search",
+      type: "find-in-chat",
     });
     expect(shellShortcut(keyEvent({ key: "f", ctrlKey: true }), windowsApp)).toEqual({
+      type: "find-in-chat",
+    });
+    expect(shellShortcut(keyEvent({ key: "f", metaKey: true, shiftKey: true }), macApp)).toEqual({
       type: "search",
     });
+    expect(
+      shellShortcut(keyEvent({ key: "f", ctrlKey: true, shiftKey: true }), windowsApp),
+    ).toEqual({ type: "search" });
     expect(shellShortcut(keyEvent({ key: "f", ctrlKey: true }), macApp)).toBeNull();
     expect(shellShortcut(keyEvent({ key: "1", metaKey: true }), macApp)).toEqual({
       type: "bot",
@@ -115,6 +124,105 @@ describe("shellShortcut", () => {
     });
     expect(shellShortcut(keyEvent({ key: "Tab", metaKey: true }), macApp)).toBeNull();
     expect(shellShortcut(keyEvent({ key: "Tab", ctrlKey: true, repeat: true }), macApp)).toBeNull();
+  });
+
+  it("makes a group chat and connects apps with Shift chords in the desktop app", () => {
+    expect(shellShortcut(keyEvent({ key: "n", metaKey: true, shiftKey: true }), macApp)).toEqual({
+      type: "new-group",
+    });
+    expect(
+      shellShortcut(keyEvent({ key: "n", ctrlKey: true, shiftKey: true }), windowsApp),
+    ).toEqual({ type: "new-group" });
+    // The browser keeps Cmd/Ctrl+Shift+N for its own private windows.
+    expect(
+      shellShortcut(keyEvent({ key: "n", metaKey: true, shiftKey: true }), macBrowser),
+    ).toBeNull();
+    expect(shellShortcut(keyEvent({ key: "m", metaKey: true, shiftKey: true }), macApp)).toEqual({
+      type: "connect-apps",
+    });
+    expect(
+      shellShortcut(keyEvent({ key: "w", ctrlKey: true, shiftKey: true }), windowsApp),
+    ).toEqual({ type: "connect-apps" });
+    expect(
+      shellShortcut(keyEvent({ key: "m", ctrlKey: true, shiftKey: true }), windowsBrowser),
+    ).toBeNull();
+  });
+
+  it("lists every shortcut with Cmd or Ctrl+Slash", () => {
+    expect(shellShortcut(keyEvent({ key: "/", metaKey: true }), macBrowser)).toEqual({
+      type: "shortcuts-help",
+    });
+    expect(shellShortcut(keyEvent({ key: "/", ctrlKey: true }), windowsBrowser)).toEqual({
+      type: "shortcuts-help",
+    });
+    expect(shellShortcut(keyEvent({ key: "/", metaKey: true, altKey: true }), macApp)).toBeNull();
+  });
+
+  it("focuses the prompt and adds selection to chat on the desktop", () => {
+    expect(shellShortcut(keyEvent({ key: "i", metaKey: true }), macApp)).toEqual({
+      type: "focus-prompt",
+    });
+    expect(shellShortcut(keyEvent({ key: "l", ctrlKey: true }), windowsApp)).toEqual({
+      type: "add-selected-text",
+    });
+    expect(shellShortcut(keyEvent({ key: "i", ctrlKey: true }), windowsBrowser)).toBeNull();
+    expect(shellShortcut(keyEvent({ key: "l", metaKey: true }), macBrowser)).toBeNull();
+  });
+
+  it("opens conversation details on each keyboard layout", () => {
+    // Apple keyboards get two chords; Windows and Linux trade Cmd for Alt.
+    expect(shellShortcut(keyEvent({ key: "i", metaKey: true, shiftKey: true }), macApp)).toEqual({
+      type: "conversation-details",
+    });
+    expect(shellShortcut(keyEvent({ key: "b", metaKey: true, altKey: true }), macApp)).toEqual({
+      type: "conversation-details",
+    });
+    expect(shellShortcut(keyEvent({ key: "b", ctrlKey: true, altKey: true }), windowsApp)).toEqual({
+      type: "conversation-details",
+    });
+    expect(
+      shellShortcut(keyEvent({ key: "b", ctrlKey: true, altKey: true }), windowsBrowser),
+    ).toEqual({ type: "conversation-details" });
+    // The Apple chord stays in the desktop app, like its browser takes of Cmd+Shift+I.
+    expect(
+      shellShortcut(keyEvent({ key: "b", metaKey: true, altKey: true }), macBrowser),
+    ).toBeNull();
+    expect(
+      shellShortcut(keyEvent({ key: "i", metaKey: true, shiftKey: true }), macBrowser),
+    ).toBeNull();
+  });
+
+  it("toggles bot settings with Cmd or Ctrl+Shift+Comma", () => {
+    expect(
+      shellShortcut(keyEvent({ key: ",", ctrlKey: true, shiftKey: true }), windowsApp),
+    ).toEqual({ type: "bot-settings" });
+    expect(
+      shellShortcut(keyEvent({ key: ",", metaKey: true, shiftKey: true }), macBrowser),
+    ).toEqual({ type: "bot-settings" });
+  });
+
+  it("sends from anywhere in the desktop app", () => {
+    expect(shellShortcut(keyEvent({ key: "Enter", metaKey: true }), macApp)).toEqual({
+      type: "send",
+    });
+    expect(shellShortcut(keyEvent({ key: "Enter", ctrlKey: true }), windowsApp)).toEqual({
+      type: "send",
+    });
+    expect(shellShortcut(keyEvent({ key: "Enter", metaKey: true }), macBrowser)).toBeNull();
+  });
+
+  it("steps through bots with Alt-Up/Down outside text fields", () => {
+    expect(shellShortcut(keyEvent({ key: "ArrowDown", altKey: true }), macApp)).toEqual({
+      type: "next-bot",
+    });
+    expect(shellShortcut(keyEvent({ key: "ArrowUp", altKey: true }), windowsBrowser)).toEqual({
+      type: "previous-bot",
+    });
+    expect(
+      shellShortcut(keyEvent({ key: "ArrowDown", altKey: true, target: textarea }), macApp),
+    ).toBeNull();
+    // Left and Right stay with visit history and word movement.
+    expect(shellShortcut(keyEvent({ key: "ArrowLeft", altKey: true }), macApp)).toBeNull();
   });
 
   it.each([

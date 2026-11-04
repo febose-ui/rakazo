@@ -607,6 +607,10 @@ msgstr "添加提供方"
 msgid "Add rule"
 msgstr ""
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Add selected text to chat"
+msgstr "将所选内容添加到聊天
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "添加服务器"
@@ -1406,6 +1410,7 @@ msgstr "正在清空…"
 #: src/pages/PeerMessagesOverlay.tsx
 #: src/pages/RoutineEditor.tsx
 #: src/pages/shell/avatar-studio-popover.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 #: src/pages/WindowChrome.tsx
 msgid "Close"
 msgstr "关闭"
@@ -1417,6 +1422,10 @@ msgstr "关闭图表"
 #: src/pages/shell/computer-overlay.tsx
 msgid "Close computer"
 msgstr "关闭电脑"
+
+#: src/pages/shell/find-in-chat.tsx
+msgid "Close find bar"
+msgstr "关闭查找栏
 
 #: src/pages/shell/message-cards.tsx
 msgid "Close image preview"
@@ -1535,6 +1544,10 @@ msgstr "沟通"
 msgid "Compact"
 msgstr "紧凑"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Compact sidebar"
+msgstr "紧凑侧栏
+
 #: src/pages/ScratchpadSection.tsx
 msgid "Complete"
 msgstr "完成"
@@ -1650,6 +1663,7 @@ msgstr "连接 API 密钥"
 
 #: src/components/SidebarFooter.tsx
 #: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Connect apps"
 msgstr "连接应用"
 
@@ -1754,6 +1768,10 @@ msgstr "继续结账"
 #: src/pages/Auth.tsx
 msgid "Continue with {0}"
 msgstr "通过 {0} 继续"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Conversation details"
+msgstr "会话详情
 
 #: src/pages/MessagingSettingsPanel.tsx
 msgid "Conversations"
@@ -2487,6 +2505,10 @@ msgstr "自定义{label}"
 msgid "Customize bot avatar"
 msgstr "自定义机器人头像"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Cycle bots"
+msgstr "循环切换机器人
+
 #: src/pages/shell/bot-panel.tsx
 msgid "Daily check-ins on unfinished work"
 msgstr "每天跟进未完成的工作"
@@ -2664,6 +2686,10 @@ msgstr "详情"
 #: src/pages/PluginsOverlay.tsx
 msgid "Developer"
 msgstr "开发"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Dictate into the composer"
+msgstr "语音输入到编写框
 
 #: src/lib/dictation.ts
 msgid "Dictation ended unexpectedly."
@@ -3101,6 +3127,11 @@ msgstr "财务"
 msgid "Find a page"
 msgstr "查找页面"
 
+#: src/pages/shell/find-in-chat.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Find in this chat"
+msgstr "在当前聊天中查找
+
 #: src/pages/model-settings/compatible-model-fields.tsx
 #: src/pages/Onboarding.tsx
 msgid "Find models"
@@ -3131,6 +3162,10 @@ msgstr "已完成。"
 #: src/pages/McpOAuthCallback.tsx
 msgid "Finishing MCP connection…"
 msgstr "正在完成 MCP 连接…"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Focus prompt"
+msgstr "聚焦输入框
 
 #: src/pages/Auth.tsx
 msgid "Forgot password?"
@@ -3535,6 +3570,10 @@ msgstr "它的对话、文件和例行任务将被永久删除。它创建的 Bo
 msgid "Its shared link stops working and its cards in chat show it as deleted. This can't be undone."
 msgstr "其共享链接将失效，聊天中的卡片会显示为已删除。此操作无法撤销。"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Jump to / search palette"
+msgstr "跳转 / 搜索面板
+
 #: src/pages/shell/transcript.tsx
 msgid "Jump to latest"
 msgstr "跳到最新"
@@ -3558,6 +3597,11 @@ msgstr ""
 #: src/pages/RoutineEditor.tsx
 msgid "key"
 msgstr "密钥"
+
+#: src/pages/Shell.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键
 
 #: src/components/LoginFields.tsx
 msgid "Label"
@@ -4136,6 +4180,7 @@ msgstr "新消息"
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
 #: src/pages/shell/create-bot-dialog.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New bot"
 msgstr "新建 Bot"
 
@@ -4149,8 +4194,13 @@ msgstr "新建群组"
 
 #: src/pages/Shell.tsx
 #: src/pages/shell/bot-picker.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "New group chat"
 msgstr "新建群聊"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "New line"
+msgstr "换行
 
 #: src/pages/shell/chat-context.tsx
 msgid "New messages"
@@ -4784,6 +4834,10 @@ msgstr "预览 {0}"
 #: src/pages/Artifacts.tsx
 msgid "Preview isn't available for this file type — download it to view it."
 msgstr "这种文件无法预览，请下载后查看。"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Previous / next bot"
+msgstr "上一个 / 下一个机器人
 
 #: src/components/markdown-copy.tsx
 msgid "Previous page"
@@ -5483,6 +5537,10 @@ msgstr "搜索应用"
 msgid "Search artifacts…"
 msgstr "搜索产物…"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Search bots"
+msgstr "搜索机器人
+
 #: src/pages/shell/command-palette.tsx
 msgid "Search bots, actions, and settings"
 msgstr ""
@@ -5537,6 +5595,7 @@ msgid "Self-hosted"
 msgstr "自托管"
 
 #: src/pages/shell/composer.tsx
+#: src/pages/shell/shortcuts-dialog.tsx
 msgid "Send"
 msgstr "发送"
 
@@ -5673,6 +5732,10 @@ msgstr "显示"
 msgid "Show all"
 msgstr "显示全部"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Show all keyboard shortcuts"
+msgstr "显示所有键盘快捷键
+
 #: src/pages/shell/sidebar-header.tsx
 msgid "Show bots"
 msgstr "显示 Bot"
@@ -5703,6 +5766,10 @@ msgstr "显示工具活动"
 #: src/components/call/VoiceChatCard.tsx
 msgid "Show transcript"
 msgstr "显示文字记录"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Sidebar bots 1–9"
+msgstr "侧栏机器人 1–9
 
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Sidebar density"
@@ -6398,6 +6465,10 @@ msgstr "至:"
 msgid "Today"
 msgstr "今天"
 
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Toggle bot settings"
+msgstr "切换机器人设置
+
 #: src/pages/AccountSettingsOverlay.tsx
 msgid "Tokens"
 msgstr "Token"
@@ -6724,6 +6795,10 @@ msgstr "查看全部"
 #: src/components/integrations/plugin-marketplace.tsx
 msgid "View source"
 msgstr "查看源代码"
+
+#: src/pages/shell/shortcuts-dialog.tsx
+msgid "Visit history"
+msgstr "访问历史
 
 #: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx
