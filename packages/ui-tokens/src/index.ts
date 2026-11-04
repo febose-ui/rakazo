@@ -182,6 +182,8 @@ export const lightTokens = {
 export type WebColorTokens = ColorTokens & {
   primaryHover: string;
   primaryDisabled: string;
+  /** Hairline behind fields on a soft surface; decorative only. */
+  borderSubtle?: string;
 };
 
 /**
@@ -191,36 +193,37 @@ export type WebColorTokens = ColorTokens & {
  * and selection are the ink at an opacity, so they read the same on every surface.
  */
 export const webDarkOverrides = {
-  background: "#161616",
+  background: "#070707",
   dialog: "#1F1F1F",
-  foreground: "#F5F5F5",
+  foreground: "#F2F2F2",
   card: "#1F1F1F",
-  cardForeground: "#F5F5F5",
+  cardForeground: "#F2F2F2",
   popover: "#1F1F1F",
-  popoverForeground: "#F5F5F5",
-  primary: "#F5F5F5",
+  popoverForeground: "#F2F2F2",
+  primary: "#F2F2F2",
   primaryHover: "#DBDBDB",
-  primaryDisabled: "#F5F5F521",
+  primaryDisabled: "#F2F2F221",
   primaryForeground: "#121212",
-  secondary: "#F5F5F50A",
-  secondaryForeground: "#F5F5F5",
-  chatUser: "#3E3E3E",
-  chatUserForeground: "#F5F5F5",
-  muted: "#1F1F1F",
-  mutedForeground: "#F5F5F5A8",
-  faintForeground: "#F5F5F58A",
-  accent: "#F5F5F50F",
-  accentForeground: "#F5F5F5",
+  secondary: "#F2F2F20A",
+  secondaryForeground: "#F2F2F2",
+  chatUser: "#5A5A5A",
+  chatUserForeground: "#FCFCFC",
+  muted: "#262626",
+  mutedForeground: "#F2F2F29E",
+  faintForeground: "#F2F2F28A",
+  accent: "#F2F2F20F",
+  accentForeground: "#F2F2F2",
   destructive: "#FF6463",
   destructiveFill: "#CF2B35",
-  border: "#F5F5F51A",
-  input: "#F5F5F538",
+  border: "#F2F2F229",
+  input: "#181818",
   ring: "#1884FC",
-  sidebar: "#0E0E0E",
-  sidebarForeground: "#F5F5F5",
-  sidebarBorder: "#F5F5F51A",
-  sidebarAccent: "#F5F5F514",
-  sidebarAccentForeground: "#F5F5F5",
+  borderSubtle: "#F2F2F21C",
+  sidebar: "#111111",
+  sidebarForeground: "#F2F2F2",
+  sidebarBorder: "#F2F2F229",
+  sidebarAccent: "#F2F2F214",
+  sidebarAccentForeground: "#F2F2F2",
   link: "#4D9BFF",
   success: "#00BA69",
   warning: "#E28600",
@@ -228,47 +231,48 @@ export const webDarkOverrides = {
   unread: "#4D9BFF",
   workingDot: "#0E9F5A",
   overlay: "#000000B2",
-  scrollbar: "#F5F5F538",
-  scrollbarHover: "#F5F5F580",
+  scrollbar: "#F2F2F238",
+  scrollbarHover: "#F2F2F280",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webLightOverrides = {
-  background: "#FFFFFF",
-  foreground: "#1C1C1C",
-  card: "#F2F2F2",
-  cardForeground: "#1C1C1C",
-  popoverForeground: "#1C1C1C",
-  primary: "#1C1C1C",
+  background: "#FCFCFC",
+  foreground: "#141414",
+  card: "#EEEEEE",
+  cardForeground: "#141414",
+  popoverForeground: "#141414",
+  primary: "#070707",
   primaryHover: "#363636",
-  primaryDisabled: "#1C1C1C26",
+  primaryDisabled: "#14141426",
   primaryForeground: "#FCFCFC",
-  secondary: "#1C1C1C0F",
-  secondaryForeground: "#1C1C1C",
-  chatUser: "#1C1C1C",
-  muted: "#F2F2F2",
-  mutedForeground: "#1C1C1CAD",
-  faintForeground: "#1C1C1C8F",
-  accent: "#1C1C1C0F",
-  accentForeground: "#1C1C1C",
+  secondary: "#77777717",
+  secondaryForeground: "#141414",
+  chatUser: "#070707",
+  muted: "#EEEEEE",
+  mutedForeground: "#14141499",
+  faintForeground: "#1414148F",
+  accent: "#77777717",
+  accentForeground: "#141414",
   destructive: "#CD2834",
   destructiveFill: "#E72E3B",
-  border: "#1C1C1C1F",
-  input: "#1C1C1C3D",
+  border: "#14141426",
+  input: "#1414143D",
   ring: "#1E86FC",
-  sidebar: "#F5F5F5",
-  sidebarForeground: "#1C1C1C",
-  sidebarBorder: "#1C1C1C1F",
-  sidebarAccent: "#1C1C1C14",
-  sidebarAccentForeground: "#1C1C1C",
-  link: "#0B6DD3",
+  borderSubtle: "#1414141A",
+  sidebar: "#F7F7F7",
+  sidebarForeground: "#141414",
+  sidebarBorder: "#14141426",
+  sidebarAccent: "#14141414",
+  sidebarAccentForeground: "#141414",
+  link: "#0A65C6",
   success: "#00854A",
   warning: "#AA6300",
   statusWorking: "#0B6DD3",
   unread: "#0B6DD3",
   workingDot: "#10AB61",
   overlay: "#00000080",
-  scrollbar: "#1C1C1C3D",
-  scrollbarHover: "#1C1C1C85",
+  scrollbar: "#1414143D",
+  scrollbarHover: "#14141485",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webDarkTokens: WebColorTokens = { ...darkTokens, ...webDarkOverrides };
@@ -498,9 +502,9 @@ export function cssVariableName(token: keyof WebColorTokens): string {
 }
 
 function renderBlock(selector: string, colorScheme: ResolvedAppearance, palette: WebColorTokens) {
-  const lines = (Object.keys(palette) as (keyof WebColorTokens)[]).map(
-    (token) => `  ${cssVariableName(token)}: ${palette[token].toLowerCase()};`,
-  );
+  const lines = (Object.keys(palette) as (keyof WebColorTokens)[])
+    .filter((token) => palette[token] !== undefined)
+    .map((token) => `  ${cssVariableName(token)}: ${palette[token]!.toLowerCase()};`);
   return `${selector} {\n  color-scheme: ${colorScheme};\n${lines.join("\n")}\n  --radius: ${RADIUS};\n}`;
 }
 
