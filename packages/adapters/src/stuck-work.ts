@@ -12,7 +12,12 @@ import {
   stuckWorkStoppedNotification,
 } from "@rakazo/core";
 import type { Prisma, PrismaClient, ThreadEvents } from "@rakazo/db";
-import { appendEventInTransaction, expireStuckRun, withTransactionRetry } from "@rakazo/db";
+import {
+  appendEventInTransaction,
+  expireStuckRun,
+  THREAD_LOCK_TRANSACTION_OPTIONS,
+  withTransactionRetry,
+} from "@rakazo/db";
 import { getLogger } from "@rakazo/logging";
 import { ExpoPushProvider } from "./expo-push.js";
 
@@ -206,7 +211,10 @@ async function remindStuckRun(
   if (!deps.notifications || !noticesEnabled(run)) return;
   if (!(await pushCanDeliver(deps.notifications, run.userId))) return;
   const claimId = await withTransactionRetry(() =>
-    deps.prisma.$transaction((tx) => claimStuckReminder(tx, run, deps.now)),
+    deps.prisma.$transaction(
+      (tx) => claimStuckReminder(tx, run, deps.now),
+      THREAD_LOCK_TRANSACTION_OPTIONS,
+    ),
   );
   if (!claimId) return;
   const reminder = stuckWorkReminder(run.status, run.bot.name);
@@ -219,7 +227,10 @@ async function remindStuckRun(
   });
   if (delivery === "delivered") {
     await withTransactionRetry(() =>
-      deps.prisma.$transaction((tx) => markStuckNoticeDelivered(tx, claimId, run)),
+      deps.prisma.$transaction(
+        (tx) => markStuckNoticeDelivered(tx, claimId, run),
+        THREAD_LOCK_TRANSACTION_OPTIONS,
+      ),
     );
     return;
   }
@@ -317,14 +328,16 @@ async function expireOne(
   run: StuckCandidate,
 ) {
   const expired = await withTransactionRetry(() =>
-    deps.prisma.$transaction((tx) =>
-      expireStuckRun(tx, {
-        runId: run.id,
-        threadId: run.threadId,
-        status: run.status,
-        updatedAt: run.updatedAt,
-        now: deps.now,
-      }),
+    deps.prisma.$transaction(
+      (tx) =>
+        expireStuckRun(tx, {
+          runId: run.id,
+          threadId: run.threadId,
+          status: run.status,
+          updatedAt: run.updatedAt,
+          now: deps.now,
+        }),
+      THREAD_LOCK_TRANSACTION_OPTIONS,
     ),
   );
   if (!expired) return;
