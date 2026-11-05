@@ -45,6 +45,7 @@ import {
   lockOwnedGroup,
   primaryActiveRun,
   retireWaitingQuestionInTransaction,
+  THREAD_LOCK_TRANSACTION_OPTIONS,
   touchGroupUpdatedAt,
   transientRunEventsWhere,
 } from "@rakazo/db";
@@ -1480,7 +1481,10 @@ export async function stopThreadRuns(
   actor: Actor,
   target: ThreadTarget,
 ) {
-  const stop = await deps.prisma.$transaction(cancelThreadRuns(actor, target));
+  const stop = await deps.prisma.$transaction(
+    cancelThreadRuns(actor, target),
+    THREAD_LOCK_TRANSACTION_OPTIONS,
+  );
   await finishThreadStop(deps, actor, target, stop);
 }
 
