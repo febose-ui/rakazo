@@ -2,7 +2,7 @@ import { displayName } from "@rakazo/core";
 import { getLogger } from "@rakazo/logging";
 import { writeBotInstructions } from "./bot-instructions.js";
 import type { Bot, Prisma, PrismaClient } from "./client.js";
-import { appendEventInTransaction } from "./events.js";
+import { appendEventInTransaction, THREAD_LOCK_TRANSACTION_OPTIONS } from "./events.js";
 
 type AppendEvent = typeof appendEventInTransaction;
 
@@ -78,7 +78,7 @@ export async function commitBotUpdate(
       },
     });
     return { updated, seq: event.seq };
-  });
+  }, THREAD_LOCK_TRANSACTION_OPTIONS);
 
   await options.notify(options.threadId, committed.seq).catch((error) => {
     getLogger().error("bot.updated realtime notification", error);
