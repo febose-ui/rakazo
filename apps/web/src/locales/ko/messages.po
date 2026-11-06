@@ -1764,6 +1764,7 @@ msgstr ""
 #: src/pages/model-settings/connection-controls.tsx
 #: src/pages/Onboarding.tsx
 #: src/pages/shell/agent-import.tsx
+#: src/pages/shell/message-hover-actions.tsx
 msgid "Copied"
 msgstr "복사됨"
 
@@ -4215,10 +4216,6 @@ msgstr ""
 #: src/components/AskCard.tsx
 msgid "No longer active"
 msgstr "이미 종료된 요청입니다"
-
-#: src/pages/PluginsOverlay.tsx
-msgid "No managed app catalog is configured on this deployment."
-msgstr "이 서버에는 관리형 앱 목록이 설정되지 않았습니다."
 
 #: src/pages/Artifacts.tsx
 msgid "No matching artifacts on this page."

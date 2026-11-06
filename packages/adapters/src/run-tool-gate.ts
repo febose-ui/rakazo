@@ -50,6 +50,7 @@ import {
 import { reviewWithBackups } from "./auto-review-backups.js";
 import { RAKAZO_DOCS_URLS } from "./builtin-skills.js";
 import type { ExecutorDeps } from "./executor-deps.js";
+import { CATALOG_LOAD, CATALOG_SEARCH } from "./lazy-tool-catalog.js";
 import { findConnectedModelCredential } from "./model-selection.js";
 import { paidRequestEffect } from "./paid-request.js";
 import { PURCHASE_CHECKED_TOOLS, purchaseApprovalOf } from "./purchase-gate.js";
@@ -85,6 +86,7 @@ type ApprovalCard = {
   reviewReason: string | undefined;
   summary: FleetCardSummary | undefined;
   batch: ToolBatch | undefined;
+  onceOnly: boolean;
 };
 
 /** A tool call that passed its approval gate, as tool handlers receive it. */
@@ -157,21 +159,28 @@ export async function gateToolCall(
   const unidentifiedAction = Boolean(batch && !batch.complete);
   const approvalName = connectorCall.route?.connectionId ? connectorCall.route.toolName : name;
   const approvalToolNames = batch?.actions.length ? batch.actions : [approvalName];
+  // Search and load return a list or a schema. They never call the connector.
+  const catalogControlRead =
+    !connectorCall.route?.connectionId &&
+    !connectorCall.route?.resourceId &&
+    (connectorCall.route?.toolName === CATALOG_SEARCH ||
+      connectorCall.route?.toolName === CATALOG_LOAD);
   // A batch tool declared as a write makes each of its actions one.
   const declaredReadOnlyFor = (toolName: string) =>
     toolName === approvalName || toolName === name || declaredReadOnly === false
       ? declaredReadOnly
       : ctx.tools.connector.get(toolName)?.readOnly;
   const requiresUnattendedApproval =
-    (unidentifiedAction && run.trigger === "webhook") ||
-    approvalToolNames.some((toolName) =>
-      unattendedTriggerToolRequiresApproval(
-        run.trigger,
-        toolName,
-        viaConnector,
-        declaredReadOnlyFor(toolName),
-      ),
-    );
+    !catalogControlRead &&
+    ((unidentifiedAction && run.trigger === "webhook") ||
+      approvalToolNames.some((toolName) =>
+        unattendedTriggerToolRequiresApproval(
+          run.trigger,
+          toolName,
+          viaConnector,
+          declaredReadOnlyFor(toolName),
+        ),
+      ));
   const connectorProviders = ctx.tools.connectedPlugins.map((plugin) => plugin.provider);
   const connectorKind = connectorKindFromToolName(approvalName, connectorProviders);
   // paid_request with only a purchase id sends the request its approval already named.
@@ -216,9 +225,10 @@ export async function gateToolCall(
       )
     : viaConnector &&
         !unidentifiedAction &&
-        approvalToolNames.every(
-          (toolName) => !connectorToolRequiresApproval(toolName, declaredReadOnlyFor(toolName)),
-        )
+        (catalogControlRead ||
+          approvalToolNames.every(
+            (toolName) => !connectorToolRequiresApproval(toolName, declaredReadOnlyFor(toolName)),
+          ))
       ? connectorTrusts
       : undefined;
   const connectorReadGated =
@@ -250,9 +260,10 @@ export async function gateToolCall(
     requiresUnattendedApproval ||
     siteGate === "new" ||
     unidentifiedAction ||
-    approvalToolNames.some((toolName) =>
-      toolRequiresApproval(toolName, viaConnector, declaredReadOnlyFor(toolName)),
-    );
+    (!catalogControlRead &&
+      approvalToolNames.some((toolName) =>
+        toolRequiresApproval(toolName, viaConnector, declaredReadOnlyFor(toolName)),
+      ));
   // A gated read still fails closed when its review errors, and keeps its approval key.
   const gated = requiresApprovalByDefault || connectorReadGated;
   const requiresMandatoryApproval =
@@ -261,6 +272,10 @@ export async function gateToolCall(
     scheduleNamesNewSite ||
     requiresUnattendedApproval ||
     toolRequiresExplicitApproval(name);
+  // No allow rule skips these, and without them the tool needs no approval, so "Always allow"
+  // on their card would save a rule that never takes effect.
+  const asksEveryTime =
+    (commandWatch || scheduleNamesNewSite) && !toolRequiresApproval(name, viaConnector);
   // Never ask runs everything else: only another owner's connection could have been steered into it.
   const guardedInNeverAsk = name === "respond_agent_connection";
   const resolvedRules = resolveActionApprovalForTools({
@@ -509,7 +524,12 @@ export async function gateToolCall(
     nextApprovedTool,
     bypassApproval: gateDecision === "allow" && gated,
   });
-  const card = { reviewReason, summary: request.fleetSummary, batch: connectorTool?.batch };
+  const card = {
+    reviewReason,
+    summary: request.fleetSummary,
+    batch: connectorTool?.batch,
+    onceOnly: asksEveryTime,
+  };
 
   if (applied?.duplicate) {
     const gate = resolveDuplicateEffectGate(applied.effect, name);

@@ -1764,6 +1764,7 @@ msgstr ""
 #: src/pages/model-settings/connection-controls.tsx
 #: src/pages/Onboarding.tsx
 #: src/pages/shell/agent-import.tsx
+#: src/pages/shell/message-hover-actions.tsx
 msgid "Copied"
 msgstr "コピーしました"
 
@@ -4215,10 +4216,6 @@ msgstr "一致するボットはありません"
 #: src/components/AskCard.tsx
 msgid "No longer active"
 msgstr "現在は無効"
-
-#: src/pages/PluginsOverlay.tsx
-msgid "No managed app catalog is configured on this deployment."
-msgstr "このデプロイでは管理対象のアプリカタログが設定されていません。"
 
 #: src/pages/Artifacts.tsx
 msgid "No matching artifacts on this page."

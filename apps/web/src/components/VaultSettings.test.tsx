@@ -55,7 +55,9 @@ vi.mock("@lingui/react/macro", () => {
     parts.reduce((text, part, index) => `${text}${index > 0 ? values[index - 1] : ""}${part}`, "");
   return { useLingui: () => ({ t }), Trans: ({ children }: { children: ReactNode }) => children };
 });
-vi.mock("@rakazo/ui-web", () => ({
+vi.mock("@rakazo/ui-web", async (importOriginal) => ({
+  // The real hook, so a copy reaches the stubbed clipboard.
+  useCopyText: (await importOriginal<typeof UiWeb>()).useCopyText,
   Button: ({
     variant: _variant,
     size: _size,
@@ -85,6 +87,7 @@ vi.mock("@rakazo/ui-web", () => ({
   ),
 }));
 
+import type * as UiWeb from "@rakazo/ui-web";
 import { REVEAL_MS, VaultSettings } from "./VaultSettings";
 
 const FAKE_VALUE = "fake-value-SENTINEL-1";

@@ -132,6 +132,18 @@ export async function consumeRunEvents(
       if (!(error instanceof RunHistoryWriteError)) throw error;
     }
   };
+  // A quiet model call or a long tool streams no events, so Stop would otherwise go unseen
+  // until the next event or heartbeat. The shared throttle keeps this at one read a second.
+  let watching = true;
+  const watch = setInterval(() => {
+    void runLeaseLost(ctx, () => watching)
+      .then((lost) => {
+        // A read still in flight when the turn ended must not cancel the work that follows it.
+        if (lost && watching) ctx.abortController.abort();
+      })
+      .catch(() => {});
+  }, 1_000);
+  watch.unref?.();
   try {
     for await (const event of withRuntimeCleanup(events, ctx.abortController)) {
       if (ctx.state.approval.pausePending) return true;
@@ -208,13 +220,18 @@ export async function consumeRunEvents(
     }
     return false;
   } finally {
+    watching = false;
+    clearInterval(watch);
     // Run completion clears thinking too; never let this replace the turn's own outcome.
     await publishThinking(false).catch(() => {});
   }
 }
 
-/** At most once a second, check the run is still this attempt's and not cancelled or released. */
-async function runLeaseLost(ctx: RunContext) {
+/**
+ * At most once a second, check the run is still this attempt's and not cancelled or released.
+ * A read that answers after `active` turns false acts on nothing.
+ */
+async function runLeaseLost(ctx: RunContext, active = () => true) {
   const { deps, runId, workerId, fence } = ctx;
   const { lease } = ctx.state;
   const now = Date.now();
@@ -224,6 +241,7 @@ async function runLeaseLost(ctx: RunContext) {
     where: { id: runId },
     select: { status: true, leaseOwner: true, leaseFence: true, checkpoint: true },
   });
+  if (!active()) return false;
   if (!still || still.status === "cancelled" || still.leaseOwner !== workerId) {
     lease.valid = false;
     return true;
@@ -238,7 +256,7 @@ async function runLeaseLost(ctx: RunContext) {
   if (ctx.computer.heldForTakeover && releasedHold) {
     await requeueComputerRun(deps, runId, workerId, fence, releasedHold, false);
     lease.valid = false;
-    ctx.abortController.abort();
+    if (active()) ctx.abortController.abort();
     return true;
   }
   return false;
@@ -578,6 +596,9 @@ async function onToolCalled(ctx: RunContext, event: RuntimeEvent<"tool">): Promi
 async function stopStuckToolLoop(ctx: RunContext, toolName: string) {
   const { deps, run, runId, bot, thread, workerId, fence } = ctx;
   const { reply } = ctx.state;
+  // Otherwise the model keeps calling tools while the stop is saved. The run's own signal stays
+  // live, so the save still finishes.
+  ctx.runtimeAbortController.abort();
   ctx.tools.approvedReplays.assertDrained();
   flushPendingTools(reply);
   if (!(await renewRunLease(deps, runId, workerId, fence))) return;
@@ -1012,7 +1033,13 @@ export async function failRun(
     await backOffRoutineAfterAccountError(deps, run.routineId, new Date(), refusal?.resetAt);
   }
   const retrying = !failed.continuationRunId && (await scheduleRoutineRetry(deps, run, error));
-  if (runSendsFinishNotification(run.trigger) && !failed.continuationRunId && !retrying) {
+  // Nobody asked for a check-in, so its failure is not news to the user.
+  if (
+    runSendsFinishNotification(run.trigger) &&
+    !isStrategicInitiativeRun(run) &&
+    !failed.continuationRunId &&
+    !retrying
+  ) {
     await notifyRun(deps, run, {
       kind: "failure",
       title: `${displayName(bot.name, "Bot")} failed`,

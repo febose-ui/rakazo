@@ -18,6 +18,7 @@ import {
   appendEventInTransaction,
   createThreadMessageInTransaction,
   runAsSystem,
+  THREAD_LOCK_TRANSACTION_OPTIONS,
 } from "@rakazo/db";
 import { getLogger } from "@rakazo/logging";
 import type { ExecutorDeps } from "./executor-deps.js";
@@ -162,7 +163,7 @@ export async function settleCallRequest(
       botId: message.botId,
       botName: message.thread.bot?.name ?? "",
     };
-  });
+  }, THREAD_LOCK_TRANSACTION_OPTIONS);
   if (!result) return null;
   await deps.events.notify(input.threadId, result.eventSeq).catch(() => undefined);
   if (result.userId) {
@@ -252,7 +253,7 @@ export async function requestUserCall(
         firstResponseRunId: event.firstResponse ? run.id : undefined,
         botName: target.bot.name,
       };
-    }),
+    }, THREAD_LOCK_TRANSACTION_OPTIONS),
   );
   if ("error" in result) return result;
   await deps.events

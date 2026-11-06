@@ -165,7 +165,7 @@ const scheduleTimingSpecs = {
   watch: {
     type: "object",
     description:
-      'Run only when something changes, checked without a model every everyMinutes (minimum 5, default 15). kind files: paths on your computer. kind command: a shell command run in your folder every interval without a model or per-run approval, equivalent to running the command yourself; its output is compared. kind tool: a read-only connected tool and its args. If nothing changed, the routine does not run. Watch one named thing (a folder, a list, a search), never a whole account. For a list result, set track: e.g. new email matching a search -> the mail search tool with its query, track ["id"]; a Drive folder -> the tool listing that folder\'s files, track ["id", "modifiedTime"]; a ClickUp list -> the tool listing its tasks, track ["id", "date_updated"].',
+      'Run only when something changes, checked without a model every everyMinutes (5 to 1440, default 15); send no cron, every or startAt with it. kind files: paths on your computer. kind command: a shell command run in your folder every interval without a model or per-run approval, equivalent to running the command yourself; its output is compared. kind tool: a read-only connected tool and its args. If nothing changed, the routine does not run. Watch one named thing (a folder, a list, a search), never a whole account. For a list result, set track: e.g. new email matching a search -> the mail search tool with its query, track ["id"]; a Drive folder -> the tool listing that folder\'s files, track ["id", "modifiedTime"]; a ClickUp list -> the tool listing its tasks, track ["id", "date_updated"].',
     properties: {
       kind: { type: "string", enum: ["files", "command", "tool"] },
       paths: { type: "array", items: { type: "string" } },
@@ -1265,7 +1265,7 @@ export const builtinAgentTools: ConnectorTool[] = [
   {
     name: "schedule_update",
     description:
-      "Edit one of this bot's schedules by routineId instead of cancelling and recreating it. Send only what changes. Timing fields replace the current timing; startAt alone moves the next run of the current repeat. active false pauses it.",
+      "Edit one of this bot's schedules by routineId instead of cancelling and recreating it. Send only what changes. Timing fields replace the current timing; startAt alone moves the next run of the current repeat. active false pauses it. It cannot change a watch's interval or timezone; the user can change the interval in the routine's settings on the web.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1484,7 +1484,7 @@ export const builtinAgentTools: ConnectorTool[] = [
   {
     name: "update_bot",
     description:
-      "Read or change your own settings. Call with no fields to read them and the models and thinking levels you can pick. Pass fields to change them, only when the user asks; setting your name, description and first instructions when you have none is fine. Never claim a change without calling this.",
+      "Read or change your own settings. Call with no fields to read them and the models and thinking levels you can pick. Long instructions come in pages; follow instructionsNextOffset before replacing them. If a read comes back with contextTruncated, it was shortened: say so, do not rewrite. Pass fields to change them, only when the user asks; setting your name, description and first instructions when you have none is fine. Never claim a change without calling this.",
     inputSchema: {
       type: "object",
       properties: {
@@ -1521,7 +1521,12 @@ export const builtinAgentTools: ConnectorTool[] = [
           type: "string",
           maxLength: BOT_INSTRUCTIONS_MAX_LENGTH,
           description:
-            "Your private operating instructions, replaced as a whole: include what should stay.",
+            "Your private operating instructions, replaced as a whole: include what should stay. Read every page before replacing them.",
+        },
+        instructions_offset: {
+          type: "integer",
+          minimum: 0,
+          description: "Character offset to read long instructions from.",
         },
         model: {
           type: "string",

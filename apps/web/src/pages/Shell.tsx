@@ -16,6 +16,7 @@ import {
   isActive,
   isRunWorking,
   memberName,
+  newClientId,
 } from "@rakazo/core";
 import { fetchFresh, writeSaved } from "@rakazo/core/query";
 import type { GroupAvatarMember } from "@rakazo/ui-web";
@@ -1177,6 +1178,7 @@ function SpaceShell() {
         refreshBots={refreshBots}
         refreshThread={refreshThread}
         refreshGroupThread={refreshGroupThread}
+        discardChatAttachments={composer.discardThreadAttachments}
         computer={computer}
         computerOpen={computerOpen}
         booting={booting}
@@ -1209,7 +1211,7 @@ function SpaceShell() {
                 void rpc.threads
                   .send({
                     botId,
-                    clientNonce: crypto.randomUUID(),
+                    clientNonce: newClientId(),
                     text: t`Your computer's disk is nearly full. Free up space by removing build output and caches you no longer need.`,
                   })
                   .then(async () => {
@@ -1263,6 +1265,7 @@ function SpaceShell() {
           openSpaceSettings={openSpaceSettings}
           closeMobileSidebar={() => setMobileSidebarOpen(false)}
           createBot={createBot}
+          discardChatAttachments={composer.discardThreadAttachments}
           clearOpenThread={() => {
             thread.resetHistory();
             thread.updateSnapshot((current) =>
