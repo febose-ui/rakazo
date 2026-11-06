@@ -14,5 +14,6 @@ describeFast("compose installer smoke scripts", () => {
       cwd: repoRoot,
     });
     expect(output).toMatch(/==>/);
-  });
+    // The scripts run one after another and take about a minute on a macOS host.
+  }, 180_000);
 });
