@@ -659,6 +659,12 @@ describe("Composer", () => {
     },
   );
 
+  it("draws the chat's controls on the row under the text", () => {
+    renderComposer(vi.fn(), { controls: <span data-testid="chat-controls" /> });
+    const controls = container?.querySelector('[data-testid="chat-controls"]');
+    expect(controls?.parentElement?.className).toContain("row-start-2");
+  });
+
   it("clears the draft once the message is sent", async () => {
     const onSend = vi.fn().mockResolvedValue(true);
     const textarea = renderComposer(onSend);

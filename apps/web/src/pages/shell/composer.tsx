@@ -19,7 +19,7 @@ import {
 } from "@rakazo/core";
 import { Button } from "@rakazo/ui-web";
 import { ArrowUp, Box, Paperclip, Settings, Square, X } from "lucide-react";
-import type { ClipboardEvent, ComponentProps, DragEvent, RefObject } from "react";
+import type { ClipboardEvent, ComponentProps, DragEvent, ReactNode, RefObject } from "react";
 import {
   memo,
   useEffect,
@@ -102,6 +102,7 @@ const ComposerBody = memo(function Composer({
   draftKey,
   enterToSend,
   docked = false,
+  controls,
 }: {
   activeName?: string;
   running: boolean;
@@ -144,6 +145,8 @@ const ComposerBody = memo(function Composer({
   enterToSend: boolean;
   /** Floating over an open page instead of sitting under the chat. */
   docked?: boolean;
+  /** Shown beside Attach under the text, in the chat only (not when docked as one row). */
+  controls?: ReactNode;
 }) {
   const { t } = useLingui();
   const [composition, setComposition] = useState(() => ({
@@ -996,6 +999,9 @@ const ComposerBody = memo(function Composer({
             />
           </div>
         </div>
+        {!docked && controls ? (
+          <div className="col-start-2 row-start-2 min-w-0">{controls}</div>
+        ) : null}
         <div
           ref={composerActionsRef}
           className={`col-start-3 flex shrink-0 items-center gap-2 justify-self-end ${

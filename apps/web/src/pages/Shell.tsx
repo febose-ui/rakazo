@@ -79,6 +79,7 @@ import { ChatHeader } from "./shell/chat-header";
 import { FALLBACK_BOT_COLOR } from "./shell/chat-shared";
 import type { CommandPaletteAction } from "./shell/command-palette";
 import { Composer } from "./shell/composer";
+import { ComposerModelControls } from "./shell/composer-model-controls";
 import { ComputerOverlay } from "./shell/computer-overlay";
 import { ComputerPanel } from "./shell/computer-panel";
 import type { CreateBotDialogInput } from "./shell/create-bot-dialog";
@@ -1116,6 +1117,23 @@ function SpaceShell() {
                 } else openSettings("models");
               }}
               onOpenConnections={() => openSettings("models")}
+              controls={
+                active && !inGroup ? (
+                  <ComposerModelControls
+                    bot={active}
+                    onOpenModel={() => {
+                      setPanel("settings");
+                      setModelFocusRequest(Date.now());
+                    }}
+                    onThinkingChange={async (thinkingLevel) => {
+                      const updated = await rpc.bots.update({ botId: active.id, thinkingLevel });
+                      setBots((current) =>
+                        current.map((bot) => (bot.id === updated.id ? updated : bot)),
+                      );
+                    }}
+                  />
+                ) : undefined
+              }
               runError={composer.displayedRunError}
               runErrorId={composer.displayedRunErrorId}
               onRunErrorPresented={composer.handleRunErrorPresented}
