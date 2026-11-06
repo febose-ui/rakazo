@@ -18,7 +18,6 @@ import {
 import {
   chatModelChoices,
   connectedModelChoices,
-  credentialForModel,
   modelOptionKey,
   parseModelOptionKey,
   resolveSelectableModelId,
@@ -44,6 +43,7 @@ import { Suspense, useEffect, useId, useRef, useState } from "react";
 import { ErrorBoundary, SectionLoadFailed } from "../../components/ErrorBoundary";
 import { InstructionSettings } from "../../components/InstructionSettings";
 import { PagesList } from "../../components/pages/PagesList";
+import { effectiveChatModel } from "../../lib/bot-model";
 import { botProfilePatch } from "../../lib/bot-profile-patch";
 import { thinkingLevelLabel } from "../../lib/model-catalog";
 import { lazyComponent } from "../../lib/preload-recovery";
@@ -311,23 +311,13 @@ export function BotSettings({
     defaultEntry?.images,
   );
 
-  const effectiveProvider = selectedModel?.provider ?? me?.defaultProvider ?? null;
-  const effectiveModelId = selectedModel?.modelId ?? me?.defaultModel ?? null;
-  const effectiveEntry =
-    effectiveProvider && effectiveModelId
-      ? catalog.find(
-          (entry) =>
-            entry.provider === effectiveProvider &&
-            resolveSelectableModelId(catalog, entry.provider, entry.id) === effectiveModelId,
-        )
-      : undefined;
-  const effectiveCredential = credentialForModel(credentials, effectiveProvider, effectiveModelId);
-  const thinkingOptions = (
-    effectiveCredential?.thinkingLevels ??
-    effectiveEntry?.thinkingLevels ??
-    []
-  ).filter((level) => level !== "off");
-  const defaultThinkingLevel = effectiveCredential?.thinkingLevel ?? "medium";
+  const { thinkingOptions, defaultThinkingLevel } = effectiveChatModel({
+    selected: selectedModel,
+    defaultProvider: me?.defaultProvider,
+    defaultModel: me?.defaultModel,
+    catalog,
+    credentials,
+  });
 
   async function executeSave(
     patchOverrides?: {
