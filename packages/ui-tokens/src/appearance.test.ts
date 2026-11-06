@@ -207,6 +207,30 @@ describe.each([
   });
 });
 
+describe("web dark palette readability", () => {
+  it.each(["background", "card", "muted", "composer", "chatUser", "sidebar"] as const)(
+    "keeps body text readable and the text steps in order on %s",
+    (surface) => {
+      const on = webDarkTokens[surface];
+      const body = contrastRatio(webDarkTokens.foreground, on);
+      const secondary = contrastRatio(webDarkTokens.mutedForeground, on);
+      const faint = contrastRatio(webDarkTokens.faintForeground, on);
+      expect(body).toBeGreaterThanOrEqual(4.5);
+      // Secondary labels are deliberately dim; on raised fills they still clear the 3:1 floor.
+      expect(secondary).toBeGreaterThanOrEqual(3);
+      // Faint is for marks and idle icons, never for text a reader needs.
+      expect(faint).toBeGreaterThanOrEqual(2.2);
+      expect(body).toBeGreaterThan(secondary);
+      expect(secondary).toBeGreaterThan(faint);
+    },
+  );
+
+  it("lifts the composer and the user bubble off the canvas", () => {
+    expect(webDarkTokens.composer).not.toBe(webDarkTokens.background);
+    expect(webDarkTokens.chatUser).not.toBe(webDarkTokens.background);
+  });
+});
+
 describe("tokens.css", () => {
   it("derives kebab-case variable names", () => {
     expect(cssVariableName("background")).toBe("--background");

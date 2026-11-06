@@ -6797,6 +6797,10 @@ msgstr ""
 msgid "What do you want me on first?"
 msgstr "Waarmee wil je dat ik begin?"
 
+#: src/pages/shell/transcript.tsx
+msgid "What do you want to know?"
+msgstr "Wat wil je weten?"
+
 #: src/components/teach/TeachComputerOverlay.tsx
 msgid "What result will you demonstrate?"
 msgstr "Welk resultaat ga je aantonen?"

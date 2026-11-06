@@ -30,12 +30,13 @@
 .rk-chat-markdown h6 {
   margin: 0.9em 0 0.35em;
   color: var(--foreground);
-  font-weight: 650;
-  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
 }
 
 .rk-chat-markdown h1 {
-  font-size: 1.35em;
+  font-size: 1.333em;
 }
 
 .rk-chat-markdown h2 {
@@ -46,7 +47,7 @@
 .rk-chat-markdown h4,
 .rk-chat-markdown h5,
 .rk-chat-markdown h6 {
-  font-size: 1.05em;
+  font-size: 1.067em;
 }
 
 .rk-chat-markdown ul,
@@ -148,9 +149,9 @@
   max-width: 100%;
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 0.75em;
-  background: var(--secondary);
-  padding: 0.8em 0.9em;
+  border-radius: 0.75rem;
+  background: var(--card);
+  padding: 0.9em 1em;
   direction: ltr;
   unicode-bidi: isolate;
 }
@@ -191,6 +192,65 @@
 
 .rk-chat-markdown .rk-chat-markdown-pre-wrap pre {
   margin: 0;
+}
+
+/* A code fence: a header with the language and Copy over a darker body, one bordered card. */
+.rk-chat-markdown-code {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--card);
+}
+
+.rk-chat-markdown-code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75em;
+  min-height: 2.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  direction: ltr;
+}
+
+.rk-chat-markdown-code-lang {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rk-chat-markdown .rk-chat-markdown-code pre {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem;
+}
+
+.rk-chat-markdown .rk-chat-markdown-code pre code {
+  font-size: 13px;
+  line-height: 1.625;
+}
+
+.rk-chat-markdown-copy.rk-chat-markdown-copy-inline {
+  position: static;
+  flex: none;
+  border-color: transparent;
+  border-radius: 9999px;
+  background: transparent;
+  opacity: 1;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+}
+
+.rk-chat-markdown-copy.rk-chat-markdown-copy-inline:hover {
+  background: var(--accent);
+  color: var(--foreground);
 }
 
 /* A Mermaid diagram sits on the same card a code block uses. A wide one scrolls sideways. */

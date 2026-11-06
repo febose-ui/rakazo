@@ -182,6 +182,10 @@ export const lightTokens = {
 export type WebColorTokens = ColorTokens & {
   primaryHover: string;
   primaryDisabled: string;
+  /** The message composer's surface, a step above the page so it floats over the chat. */
+  composer: string;
+  /** The soft shadow under the floating composer. */
+  composerShadow: string;
 };
 
 /**
@@ -191,45 +195,50 @@ export type WebColorTokens = ColorTokens & {
  * and selection are the ink at an opacity, so they read the same on every surface.
  */
 export const webDarkOverrides = {
-  background: "#161616",
-  dialog: "#1F1F1F",
-  foreground: "#F5F5F5",
-  card: "#1F1F1F",
-  cardForeground: "#F5F5F5",
-  popover: "#1F1F1F",
-  popoverForeground: "#F5F5F5",
-  primary: "#F5F5F5",
-  primaryHover: "#DBDBDB",
-  primaryDisabled: "#F5F5F521",
-  primaryForeground: "#121212",
-  secondary: "#F5F5F50A",
-  secondaryForeground: "#F5F5F5",
-  chatUser: "#3E3E3E",
-  chatUserForeground: "#F5F5F5",
-  muted: "#1F1F1F",
-  mutedForeground: "#F5F5F5A8",
-  faintForeground: "#F5F5F58A",
-  accent: "#F5F5F50F",
-  accentForeground: "#F5F5F5",
+  // An OLED-black canvas: surfaces sit on the black and separate by hairlines, not fills.
+  background: "#000000",
+  dialog: "#16181C",
+  foreground: "#F7F9F9",
+  card: "#000000",
+  cardForeground: "#F7F9F9",
+  popover: "#16181C",
+  popoverForeground: "#F7F9F9",
+  glassFill: "#16181C",
+  glassStroke: "#2F3336",
+  primary: "#FFFFFF",
+  primaryHover: "#D7DBDC",
+  primaryDisabled: "#FFFFFF1F",
+  primaryForeground: "#000000",
+  secondary: "#FFFFFF0F",
+  secondaryForeground: "#F7F9F9",
+  chatUser: "#202327",
+  chatUserForeground: "#FFFFFF",
+  muted: "#16181C",
+  mutedForeground: "#71767B",
+  faintForeground: "#536471",
+  accent: "#FFFFFF14",
+  accentForeground: "#F7F9F9",
   destructive: "#FF6463",
   destructiveFill: "#CF2B35",
-  border: "#F5F5F51A",
-  input: "#F5F5F538",
-  ring: "#1884FC",
-  sidebar: "#0E0E0E",
-  sidebarForeground: "#F5F5F5",
-  sidebarBorder: "#F5F5F51A",
-  sidebarAccent: "#F5F5F514",
-  sidebarAccentForeground: "#F5F5F5",
-  link: "#4D9BFF",
+  border: "#2F3336",
+  input: "#FFFFFF4D",
+  ring: "#FFFFFF",
+  sidebar: "#000000",
+  sidebarForeground: "#F7F9F9",
+  sidebarBorder: "#202327",
+  sidebarAccent: "#202327",
+  sidebarAccentForeground: "#F7F9F9",
+  link: "#1D9BF0",
   success: "#00BA69",
   warning: "#E28600",
-  statusWorking: "#4D9BFF",
-  unread: "#4D9BFF",
+  statusWorking: "#1D9BF0",
+  unread: "#1D9BF0",
   workingDot: "#0E9F5A",
   overlay: "#000000B2",
-  scrollbar: "#F5F5F538",
-  scrollbarHover: "#F5F5F580",
+  scrollbar: "#2F3336",
+  scrollbarHover: "#536471",
+  composer: "#16181C",
+  composerShadow: "#00000099",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webLightOverrides = {
@@ -269,6 +278,8 @@ export const webLightOverrides = {
   overlay: "#00000080",
   scrollbar: "#1C1C1C3D",
   scrollbarHover: "#1C1C1C85",
+  composer: "#FFFFFF",
+  composerShadow: "#0000000D",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webDarkTokens: WebColorTokens = { ...darkTokens, ...webDarkOverrides };

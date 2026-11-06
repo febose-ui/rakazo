@@ -36,6 +36,7 @@ import {
   shouldRenderToolCard,
   toolStepCount,
 } from "../../lib/tool-activity-view";
+import { hasCodeFence } from "../../lib/transcript-layout";
 import { ReplyLine } from "./chat-context";
 import { FALLBACK_BOT_COLOR, previewMessageText } from "./chat-shared";
 import type { ImportSetupTarget } from "./import-setup-card";
@@ -241,14 +242,18 @@ export const MessageView = memo(function MessageView({
         </>
       );
     }
+    const code = visibleNarrationBlocks.some(
+      (block) => (block.kind === "text" || block.kind === "progress") && hasCodeFence(block.text),
+    );
+    const width = code ? "w-full" : "w-fit";
     return (
       <>
         {messageContext}
-        <div className="relative w-fit max-w-full [@media(hover:none)]:w-full">
-          <div className="flex w-fit max-w-full justify-start [@media(hover:none)]:w-full">
+        <div className={`relative ${width} max-w-full [@media(hover:none)]:w-full`}>
+          <div className={`flex ${width} max-w-full justify-start [@media(hover:none)]:w-full`}>
             <div
               data-testid="message-bot-bubble"
-              className="max-w-full space-y-2.5 rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+              className={`${code ? "min-w-0 flex-1" : ""} max-w-full space-y-2.5 rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground`}
               dir="auto"
             >
               {visibleNarrationBlocks.map((block, i) => {
@@ -406,7 +411,7 @@ export const MessageView = memo(function MessageView({
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+                  className="max-w-full rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground"
                   dir="auto"
                 >
                   <ChatMarkdown streaming renderMention={renderMention} onOpenPage={openPage}>
@@ -533,7 +538,7 @@ export const MessageView = memo(function MessageView({
                 <div
                   data-testid="message-user-bubble"
                   data-quote-message-id={quoteMessageId}
-                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[20px] bg-chat-user px-[18px] py-3 text-body1 text-chat-user-foreground"
+                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[22px] rounded-ee-sm bg-chat-user px-4 py-2.5 text-chat leading-relaxed text-chat-user-foreground"
                   dir="auto"
                 >
                   <LinkifiedText onOpenPage={openPage}>{block.text}</LinkifiedText>
@@ -543,14 +548,15 @@ export const MessageView = memo(function MessageView({
             );
           }
           if (block.kind === "text") {
+            const code = hasCodeFence(block.text);
             return (
               <div
                 key={i}
-                className="relative flex w-fit max-w-full justify-start [@media(hover:none)]:w-full [@media(hover:none)]:flex-wrap"
+                className={`relative flex ${code ? "w-full" : "w-fit"} max-w-full justify-start [@media(hover:none)]:w-full [@media(hover:none)]:flex-wrap`}
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+                  className={`${code ? "min-w-0 flex-1" : ""} max-w-full rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground`}
                   dir="auto"
                 >
                   <div data-quote-message-id={quoteMessageId}>
@@ -577,7 +583,7 @@ export const MessageView = memo(function MessageView({
           if (block.kind === "card") {
             return (
               <div key={i} className="flex justify-start">
-                <div className="flex flex-col gap-2 rounded-[20px] bg-muted px-5 py-4">
+                <div className="flex flex-col gap-2 rounded-2xl border border-border bg-card px-5 py-4">
                   {block.lines.map((line) => (
                     <div key={line.k} className="flex items-baseline gap-2.5 text-[15px]">
                       <span className="text-success">✓</span>

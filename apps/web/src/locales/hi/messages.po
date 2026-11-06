@@ -6797,6 +6797,10 @@ msgstr ""
 msgid "What do you want me on first?"
 msgstr ""
 
+#: src/pages/shell/transcript.tsx
+msgid "What do you want to know?"
+msgstr "आप क्या जानना चाहते हैं?"
+
 #: src/components/teach/TeachComputerOverlay.tsx
 msgid "What result will you demonstrate?"
 msgstr "आप कौन-सा परिणाम दिखाकर बताएंगे?"

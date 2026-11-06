@@ -23,7 +23,7 @@ import {
 import type { GroupAvatarMember } from "@rakazo/ui-web";
 import { Button, cn, Spinner } from "@rakazo/ui-web";
 import { ArrowDown } from "lucide-react";
-import type { CSSProperties, RefObject } from "react";
+import type { RefObject } from "react";
 import {
   Fragment,
   memo,
@@ -44,18 +44,18 @@ import {
   quoteDraftForSelection,
 } from "../../lib/quote-selection";
 import { messageHasVisibleBlocks } from "../../lib/tool-activity-view";
-import { TRANSCRIPT_CONTENT_PADDING } from "../../lib/transcript-layout";
+import { hasCodeFence, TRANSCRIPT_CONTENT_PADDING } from "../../lib/transcript-layout";
 import { transcriptIsNearEnd, transcriptMovedDown } from "../../lib/transcript-scroll";
 import { TimeSeparator, UnreadDivider } from "./chat-context";
 import type { ImportSetupTarget } from "./import-setup-card";
 import { MessageView } from "./message-view";
 import { QuoteSelectionButton } from "./quote-selection-button";
 
-/** Bubbles stop at a readable line length instead of stretching with wide windows. */
+/** User bubbles stop at a readable line length; replies read flush at the transcript's measure. */
 export function bubbleFrameWidth(role: ThreadMessage["role"]) {
   return role === "user"
-    ? "max-w-[min(84%,calc(100%_-_8rem),39rem)] [@media(hover:none)]:max-w-[min(84%,39rem)]"
-    : "max-w-[min(88%,calc(100%_-_8rem),39rem)] [@media(hover:none)]:max-w-[min(88%,39rem)]";
+    ? "max-w-[min(85%,calc(100%_-_8rem),39rem)] [@media(hover:none)]:max-w-[min(85%,39rem)]"
+    : "max-w-[min(100%,48rem)]";
 }
 
 export const Transcript = memo(function Transcript({
@@ -67,13 +67,13 @@ export const Transcript = memo(function Transcript({
   transcript,
   showToolActivity,
   olderCursor,
+  greeting = false,
   unreadAfterSeq,
   loadingOlder,
   answerableAskIds,
   dismissableAskIds,
   running,
   workingBots,
-  userBubble,
   onCallBack,
   onLoadOlder,
   onOpenBot,
@@ -108,12 +108,12 @@ export const Transcript = memo(function Transcript({
   /** The seq read up to when this chat opened; null when nothing was unread. */
   unreadAfterSeq: number | null;
   loadingOlder: boolean;
+  /** A loaded chat with nothing in it yet shows a greeting above the composer. */
+  greeting?: boolean;
   answerableAskIds: Set<string>;
   dismissableAskIds: Set<string>;
   running: boolean;
   workingBots: GroupAvatarMember[];
-  /** Your bubbles take the bot's color in its own chat. */
-  userBubble?: { background: string; foreground: string };
   /** Calls the bot back from a missed call in the transcript. */
   onCallBack?: () => void;
   onLoadOlder: () => void | Promise<void>;
@@ -504,14 +504,6 @@ export const Transcript = memo(function Transcript({
           }
         }}
         className={`rk-scroll isolate flex min-h-0 flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto scroll-pt-16 scroll-pb-7 pt-20 pb-12 md:pt-[84px] md:pb-13 ${TRANSCRIPT_CONTENT_PADDING}`}
-        style={
-          userBubble
-            ? ({
-                "--chat-user": userBubble.background,
-                "--chat-user-foreground": userBubble.foreground,
-              } as CSSProperties)
-            : undefined
-        }
       >
         {olderCursor != null ? (
           <Button
@@ -525,6 +517,13 @@ export const Transcript = memo(function Transcript({
             {loadingOlder ? <Spinner aria-label={t`Loading…`} /> : null}
             {t`Load earlier messages`}
           </Button>
+        ) : null}
+        {greeting ? (
+          <div data-testid="chat-greeting" className="flex flex-1 items-end justify-center pb-6">
+            <h2 className="text-balance text-center text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              {t`What do you want to know?`}
+            </h2>
+          </div>
         ) : null}
         {groupVoiceChats(reactionView.visibleMessages).map((item) => {
           if (item.kind === "voiceChat") {
@@ -583,7 +582,7 @@ export const Transcript = memo(function Transcript({
                               (block) => block.kind === "ask" || block.kind === "mcp_approval",
                             )
                           ? "relative w-full min-w-0 max-w-xl"
-                          : `relative ${message.blocks.some((block) => block.kind === "app_connect" || block.kind === "page") || pageView.pages.has(message.id) ? "w-full" : "w-fit"} min-w-0 ${bubbleFrameWidth(message.role)}`
+                          : `relative ${message.blocks.some((block) => block.kind === "app_connect" || block.kind === "page" || (message.role !== "user" && (block.kind === "text" || block.kind === "progress") && hasCodeFence(block.text))) || pageView.pages.has(message.id) ? "w-full" : "w-fit"} min-w-0 ${bubbleFrameWidth(message.role)}`
                     }
                   >
                     <MessageView

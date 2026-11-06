@@ -553,17 +553,17 @@ export function BotSettings({
         />
       </div>
       <Tabs value={tab} onValueChange={(next) => onTabChange?.(next as BotPanelTab)}>
-        <TabsList className="w-full">
-          <TabsTrigger value="computer">
+        <TabsList className="mx-auto w-fit gap-1 rounded-full border border-border p-1 group-data-horizontal/tabs:h-auto">
+          <TabsTrigger value="computer" className={PILL_TAB}>
             <Trans>Computer</Trans>
           </TabsTrigger>
-          <TabsTrigger value="routines">
+          <TabsTrigger value="routines" className={PILL_TAB}>
             <Trans>Routines</Trans>
           </TabsTrigger>
-          <TabsTrigger value="pages">
+          <TabsTrigger value="pages" className={PILL_TAB}>
             <Trans>Pages</Trans>
           </TabsTrigger>
-          <TabsTrigger value="settings">
+          <TabsTrigger value="settings" className={PILL_TAB}>
             <Trans>Advanced</Trans>
           </TabsTrigger>
         </TabsList>
@@ -885,6 +885,8 @@ export function BotSettings({
 }
 
 const NO_CREDENTIALS: never[] = [];
+const PILL_TAB =
+  "rounded-full px-4 py-1 text-xs data-active:border-transparent data-active:bg-input/50 dark:data-active:border-transparent dark:data-active:bg-input/50";
 const NO_CATALOG: ModelCatalogEntry[] = [];
 
 function sameStringList(left: readonly string[], right: readonly string[]) {

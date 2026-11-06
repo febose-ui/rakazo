@@ -30,6 +30,9 @@
   --text-heading1: 26px;
   --text-heading1--line-height: 32px;
   --text-heading1--letter-spacing: -0.015em;
+  /* Chat reading text: message bodies and the composer. */
+  --text-chat: 15px;
+  --text-chat--line-height: 28px;
 }
 
 /* The system font reads light at 400 on macOS; regular text uses 420 there. Medium and semibold stay. */
@@ -78,6 +81,8 @@
   --color-overlay: var(--overlay);
   --color-scrollbar: var(--scrollbar);
   --color-scrollbar-hover: var(--scrollbar-hover);
+  --color-composer: var(--composer);
+  --shadow-composer: 0 8px 32px var(--composer-shadow);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

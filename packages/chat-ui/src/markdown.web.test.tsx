@@ -724,6 +724,19 @@ describe("web markdown code copy", () => {
     expect(html.match(/aria-label="Copy code"/g)).toHaveLength(1);
   });
 
+  it("heads a code fence with its language beside Copy, and leaves a prose fence bare", () => {
+    const holder = document.createElement("div");
+    holder.innerHTML = renderToStaticMarkup(
+      <ChatMarkdown>{"```python\nprint(1)\n```\n\n```text\nDear team\n```"}</ChatMarkdown>,
+    );
+    const blocks = holder.querySelectorAll('[data-testid="chat-code-block"]');
+    expect(blocks).toHaveLength(1);
+    const head = blocks[0]?.querySelector(".rk-chat-markdown-code-head");
+    expect(head?.textContent).toBe("python");
+    expect(head?.querySelector('button[aria-label="Copy code"]')).not.toBeNull();
+    expect(holder.querySelector(".rk-chat-markdown-pre-prose")).not.toBeNull();
+  });
+
   it("renders provider copy in place of the English defaults", () => {
     const rows = Array.from({ length: 12 }, (_, i) => `| ${i + 1} | v${i + 1} |`).join("\n");
     const markdown = ["```ts", "const a = 1;", "```", "", "| N | V |", "|---|---|", rows].join(

@@ -66,7 +66,7 @@ import {
 import { useComposerLayout } from "./use-composer-layout";
 
 const ATTACHMENT_ACCEPT = attachmentPickerAccept(navigator.userAgent);
-const COMPOSER_TEXT = "rk-scroll whitespace-pre-wrap break-words px-0.5 py-0.5 text-body1";
+const COMPOSER_TEXT = "rk-scroll whitespace-pre-wrap break-words px-0.5 py-0.5 text-chat leading-6";
 const ComposerBody = memo(function Composer({
   artifactTarget,
   activeName,
@@ -269,6 +269,8 @@ const ComposerBody = memo(function Composer({
     composerFieldRef,
     expanded,
   } = useComposerLayout(draft, selectedSkill !== null);
+  // One pill row; text that outgrows it moves above the controls.
+  const stacked = expanded;
   const pendingCaret = useRef<ComposerMentionRange | null>(null);
   const completedSelection = useRef<number | null>(null);
   useLayoutEffect(() => {
@@ -656,7 +658,7 @@ const ComposerBody = memo(function Composer({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`relative z-30 m-0 min-w-0 border-0 ${docked ? "p-0" : "px-3 pb-4 pt-0 md:px-[max(1.5rem,calc((100%_-_60rem)/2))] md:pb-6"} [&>*]:pointer-events-auto ${fileDragActive ? "pointer-events-auto" : "pointer-events-none"} ${
+      className={`relative z-30 m-0 min-w-0 border-0 ${docked ? "p-0" : "px-3 pb-4 pt-0 md:px-[max(1.5rem,calc((100%_-_48rem)/2))] md:pb-6"} [&>*]:pointer-events-auto ${fileDragActive ? "pointer-events-auto" : "pointer-events-none"} ${
         draggingFiles ? "rounded-[14px] ring-2 ring-inset ring-ring" : ""
       }`}
     >
@@ -818,14 +820,12 @@ const ComposerBody = memo(function Composer({
         ref={composerBarRef}
         data-testid="composer-bar"
         data-expanded={expanded}
-        className={`grid grid-cols-[auto_minmax(0,1fr)_auto] content-end items-center rounded-[26px] border border-border pe-2.5 ps-3 transition-colors focus-within:border-input ${
-          docked ? "bg-card" : "bg-background"
-        } ${
-          expanded
-            ? "gap-x-2 gap-y-2 pb-[9px] pt-3"
+        className={`grid grid-cols-[auto_minmax(0,1fr)_auto] content-end items-center border border-border bg-composer shadow-composer transition-colors duration-150 focus-within:border-input ${
+          stacked
+            ? "gap-x-2 gap-y-2 rounded-[28px] pb-2.5 pt-3.5 ps-2.5 pe-2.5"
             : docked
-              ? "gap-x-3 py-[5px] ps-2 pe-2"
-              : "gap-x-3.5 py-[9px]"
+              ? "gap-x-3 rounded-full py-[5px] ps-2 pe-2"
+              : "gap-x-2 rounded-full py-2 ps-2 pe-2"
         }`}
       >
         <input
@@ -843,17 +843,17 @@ const ComposerBody = memo(function Composer({
           aria-label={t`Attach file`}
           disabled={disabled}
           onClick={() => fileInputRef.current?.click()}
-          className={`col-start-1 size-8 shrink-0 rounded-full border border-border bg-muted text-muted-foreground transition-colors hover:bg-accent hover:text-foreground ${
-            expanded ? "row-start-2" : ""
+          className={`col-start-1 size-8 shrink-0 rounded-full bg-accent text-muted-foreground transition-colors duration-150 hover:bg-input/50 hover:text-foreground ${
+            stacked ? "row-start-2" : ""
           }`}
         >
-          <Plus size={16} strokeWidth={2} />
+          <Plus size={18} strokeWidth={1.8} />
         </Button>
         <div
           ref={composerFieldRef}
           data-testid="composer-field"
           className={`flex min-w-0 flex-wrap items-end gap-1.5 ${
-            expanded ? "col-span-3 row-start-1 px-1.5" : "col-start-2"
+            stacked ? "col-span-3 row-start-1 px-2" : "col-start-2"
           }`}
         >
           {selectedSkill ? (
@@ -985,7 +985,7 @@ const ComposerBody = memo(function Composer({
               autoComplete="off"
               dir="auto"
               rows={1}
-              className={`${COMPOSER_TEXT} block max-h-25 min-h-[24px] w-full resize-none overflow-y-auto bg-transparent text-transparent caret-foreground outline-none placeholder:text-muted-foreground selection:bg-ring/30 selection:text-transparent disabled:opacity-40 forced-colors:text-[CanvasText]`}
+              className={`${COMPOSER_TEXT} block max-h-55 min-h-[24px] w-full resize-none overflow-y-auto bg-transparent text-transparent caret-foreground outline-none placeholder:text-muted-foreground selection:bg-ring/30 selection:text-transparent disabled:opacity-40 forced-colors:text-[CanvasText]`}
             />
             <ComposerMentionHighlights
               ref={mirrorRef}
@@ -999,7 +999,7 @@ const ComposerBody = memo(function Composer({
         <div
           ref={composerActionsRef}
           className={`col-start-3 flex shrink-0 items-center gap-2 justify-self-end ${
-            expanded ? "row-start-2" : ""
+            stacked ? "row-start-2" : ""
           }`}
         >
           {talk.recording?.locked ? (
@@ -1014,19 +1014,18 @@ const ComposerBody = memo(function Composer({
                 aria-label={t`Send`}
                 disabled={sending || !canSend || disabled}
                 onClick={() => void send()}
-                className="size-8 shrink-0 rounded-full transition-transform active:scale-95 disabled:bg-primary-disabled disabled:text-foreground/30 disabled:opacity-100"
+                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-primary-disabled disabled:text-faint-foreground disabled:opacity-100"
               >
                 <ArrowUp size={16} strokeWidth={2.2} />
               </Button>
               <Button
-                variant="outline"
                 size="icon"
                 aria-label={t`Stop`}
                 disabled={sending}
                 onClick={() => void onStop()}
-                className="size-8 rounded-full border border-border bg-muted text-foreground/80 shadow-sm transition-colors hover:bg-accent hover:text-foreground"
+                className="size-8 rounded-full transition-[transform,background-color] duration-150 hover:bg-primary-hover active:scale-95"
               >
-                <Square size={11} strokeWidth={0} fill="currentColor" />
+                <Square size={10} strokeWidth={0} fill="currentColor" />
               </Button>
             </>
           ) : (
@@ -1039,7 +1038,7 @@ const ComposerBody = memo(function Composer({
                 aria-label={t`Send`}
                 disabled={sending || !canSend || disabled}
                 onClick={() => void send()}
-                className="size-8 shrink-0 rounded-full transition-transform active:scale-95 disabled:bg-primary-disabled disabled:text-foreground/30 disabled:opacity-100"
+                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-primary-disabled disabled:text-faint-foreground disabled:opacity-100"
               >
                 <ArrowUp size={16} strokeWidth={2.2} />
               </Button>

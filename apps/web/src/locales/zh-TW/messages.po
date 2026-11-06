@@ -6798,6 +6798,10 @@ msgstr "你最希望 Rakazo 幫你做什麼？"
 msgid "What do you want me on first?"
 msgstr "你想讓我先做什麼？"
 
+#: src/pages/shell/transcript.tsx
+msgid "What do you want to know?"
+msgstr "你想知道什麼？"
+
 #: src/components/teach/TeachComputerOverlay.tsx
 msgid "What result will you demonstrate?"
 msgstr "你要示範什麼結果？"

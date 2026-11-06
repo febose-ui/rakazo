@@ -6797,6 +6797,10 @@ msgstr "What do you most want Rakazo to help with?"
 msgid "What do you want me on first?"
 msgstr "What do you want me on first?"
 
+#: src/pages/shell/transcript.tsx
+msgid "What do you want to know?"
+msgstr "What do you want to know?"
+
 #: src/components/teach/TeachComputerOverlay.tsx
 msgid "What result will you demonstrate?"
 msgstr "What result will you demonstrate?"
