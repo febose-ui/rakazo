@@ -33,20 +33,20 @@ export function useSettingsNavItems(available: {
   const { t } = useLingui();
   return [
     { id: "general", label: t`General`, icon: Settings },
-    { id: "models", label: t`Models`, icon: Cpu },
-    { id: "voice", label: t`Voice`, icon: Volume2 },
-    { id: "confirmations", label: t`Approvals`, icon: ShieldCheck },
-    { id: "vault", label: t`Vault`, icon: KeyRound },
-    ...(available.messaging
-      ? [{ id: "messaging" as const, label: t`Messaging`, icon: MessageCircle }]
-      : []),
-    ...(available.wallet ? [{ id: "wallet" as const, label: t`Wallet`, icon: Wallet }] : []),
-    { id: "memory", label: t`Memory`, icon: Brain },
-    { id: "usage", label: t`Usage`, icon: Gauge },
     ...(available.computer ? [{ id: "computer" as const, label: t`Computer`, icon: Monitor }] : []),
+    { id: "confirmations", label: t`Permissions`, icon: ShieldCheck },
+    { id: "vault", label: t`Vault`, icon: KeyRound },
+    { id: "usage", label: t`Usage`, icon: Gauge },
     ...(available.billing ? [{ id: "billing" as const, label: t`Billing`, icon: CreditCard }] : []),
     ...(available.updates
       ? [{ id: "updates" as const, label: t`Updates`, icon: CloudDownload }]
       : []),
+    { id: "models", label: t`Models`, icon: Cpu },
+    { id: "voice", label: t`Voice`, icon: Volume2 },
+    { id: "memory", label: t`Memory`, icon: Brain },
+    ...(available.messaging
+      ? [{ id: "messaging" as const, label: t`Messaging`, icon: MessageCircle }]
+      : []),
+    ...(available.wallet ? [{ id: "wallet" as const, label: t`Wallet`, icon: Wallet }] : []),
   ];
 }
