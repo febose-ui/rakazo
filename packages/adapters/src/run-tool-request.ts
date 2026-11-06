@@ -47,7 +47,7 @@ import { scheduleCreateRefusal } from "./run-tools-tasks.js";
 import { USER_COMPUTER_TOOLS } from "./run-tools-user-computer.js";
 import { SCHEDULE_TOOL_NAMES } from "./schedule-tools.js";
 import { SKILL_TOOL_NAMES } from "./skill-tools.js";
-import { argumentGiven } from "./update-bot-patch.js";
+import { argumentGiven, dropUnchangedOwnBotArgs } from "./update-bot-patch.js";
 
 /** A tool call resolved to the tool it runs and the exact request an approval covers. */
 export interface ToolRequest {
@@ -468,7 +468,23 @@ async function prepareOwnBotUpdate(
     request.heldForApproval = typeof request.args.previousInstructions === "string";
     return undefined;
   }
-  const { previousInstructions: _previous, reason: _reason, ...args } = request.args;
+  const { previousInstructions: _previous, reason: _reason, ...given } = request.args;
+  const current = await ctx.deps.prisma.bot.findUnique({
+    where: { id: run.botId },
+    select: {
+      name: true,
+      description: true,
+      instructions: true,
+      color: true,
+      notifyOnFinish: true,
+      dailyCheckIns: true,
+      modelId: true,
+      thinkingLevel: true,
+      autoSpeak: true,
+      voiceId: true,
+    },
+  });
+  const args = current ? dropUnchangedOwnBotArgs(given, current, run) : given;
   request.args = args;
   const settingsOnly = Object.keys(args).filter(
     (key) => !OWN_FIELDS.has(key) && argumentGiven(args[key]),
