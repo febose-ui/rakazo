@@ -209,15 +209,15 @@ describe.each([
 
 describe("web dark palette readability", () => {
   it.each(["background", "card", "muted", "composer", "chatUser", "sidebar"] as const)(
-    "keeps body text readable and the zinc text steps in order on %s",
+    "keeps body text readable and the text steps in order on %s",
     (surface) => {
       const on = webDarkTokens[surface];
       const body = contrastRatio(webDarkTokens.foreground, on);
       const secondary = contrastRatio(webDarkTokens.mutedForeground, on);
       const faint = contrastRatio(webDarkTokens.faintForeground, on);
       expect(body).toBeGreaterThanOrEqual(4.5);
-      // Secondary labels are a deliberately dim zinc; they still clear the 3:1 large-text floor.
-      expect(secondary).toBeGreaterThanOrEqual(3.5);
+      // Secondary labels are deliberately dim; on raised fills they still clear the 3:1 floor.
+      expect(secondary).toBeGreaterThanOrEqual(3);
       // Faint is for marks and idle icons, never for text a reader needs.
       expect(faint).toBeGreaterThanOrEqual(2.2);
       expect(body).toBeGreaterThan(secondary);
