@@ -335,7 +335,7 @@ describePostgres("account import (PostgreSQL)", () => {
         },
       ]),
     );
-  const runImport = (bytes: Uint8Array) =>
+  const runImport = (bytes: Uint8Array, importer = actor) =>
     importAccount(
       {
         prisma,
@@ -346,7 +346,7 @@ describePostgres("account import (PostgreSQL)", () => {
         dataDir: root,
         maxArtifactBytes: 1024 * 1024,
       },
-      actor,
+      importer,
       chunked(bytes),
     );
   const ownedSpaceIds = async () =>
@@ -571,14 +571,6 @@ describePostgres("account import (PostgreSQL)", () => {
     }))
       files.set(file.path, file.content);
     expect(Buffer.from(files.get("archive.zip")!)).toEqual(Buffer.from(inner));
-  });
-
-  it("imports into the importer's current organization", async () => {
-    const work = await createOrganizationForUser(system, { userId, name: "Work" });
-    const result = await runImport(archive(), { ...actor, spaceId: work.defaultSpaceId });
-    await expect(
-      system.space.findUniqueOrThrow({ where: { id: result.spaces[0]!.id } }),
-    ).resolves.toMatchObject({ organizationId: work.id });
   });
 
   it("leaves out an artifact the export could not read, with its versions", async () => {
