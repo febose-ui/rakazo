@@ -3,37 +3,37 @@
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
-  --background: #161616;
-  --dialog: #1f1f1f;
-  --foreground: #f5f5f5;
-  --card: #1f1f1f;
-  --card-foreground: #f5f5f5;
-  --popover: #1f1f1f;
-  --popover-foreground: #f5f5f5;
+  --background: #000000;
+  --dialog: #0f0f10;
+  --foreground: #f4f4f5;
+  --card: #09090b;
+  --card-foreground: #f4f4f5;
+  --popover: #0f0f10;
+  --popover-foreground: #f4f4f5;
   --glass-fill: #2c2c2e;
   --glass-stroke: #fcfcfc26;
-  --primary: #f5f5f5;
-  --primary-foreground: #121212;
-  --secondary: #f5f5f50a;
-  --secondary-foreground: #f5f5f5;
-  --chat-user: #3e3e3e;
-  --chat-user-foreground: #f5f5f5;
-  --muted: #1f1f1f;
-  --muted-foreground: #f5f5f5a8;
-  --faint-foreground: #f5f5f58a;
-  --accent: #f5f5f50f;
-  --accent-foreground: #f5f5f5;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #ffffff0f;
+  --secondary-foreground: #f4f4f5;
+  --chat-user: #18181b;
+  --chat-user-foreground: #f4f4f5;
+  --muted: #121214;
+  --muted-foreground: #a1a1aa;
+  --faint-foreground: #71717a;
+  --accent: #ffffff0f;
+  --accent-foreground: #f4f4f5;
   --destructive: #ff6463;
   --destructive-fill: #cf2b35;
   --destructive-foreground: #ffffff;
-  --border: #f5f5f51a;
-  --input: #f5f5f538;
+  --border: #ffffff1a;
+  --input: #ffffff33;
   --ring: #1884fc;
-  --sidebar: #0e0e0e;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-border: #f5f5f51a;
-  --sidebar-accent: #f5f5f514;
-  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar: #000000;
+  --sidebar-foreground: #f4f4f5;
+  --sidebar-border: #ffffff0d;
+  --sidebar-accent: #ffffff14;
+  --sidebar-accent-foreground: #f4f4f5;
   --link: #4d9bff;
   --favicon-plate: #ffffff;
   --success: #00ba69;
@@ -42,8 +42,8 @@
   --unread: #4d9bff;
   --working-dot: #0e9f5a;
   --overlay: #000000b2;
-  --scrollbar: #f5f5f538;
-  --scrollbar-hover: #f5f5f580;
+  --scrollbar: #ffffff26;
+  --scrollbar-hover: #ffffff4d;
   --page-icon-sheet: #2c2c2e;
   --page-icon-edge: #363638;
   --page-icon-fold: #3c3c3e;
@@ -52,8 +52,10 @@
   --page-tile: #343434;
   --page-tile-edge: #414141;
   --page-tile-line: #626262;
-  --primary-hover: #dbdbdb;
-  --primary-disabled: #f5f5f521;
+  --primary-hover: #e4e4e7;
+  --primary-disabled: #ffffff1f;
+  --composer: #141416;
+  --composer-shadow: #00000066;
   --radius: 0.75rem;
 }
 
@@ -110,5 +112,7 @@
   --page-tile-line: #a1a1a6;
   --primary-hover: #363636;
   --primary-disabled: #1c1c1c26;
+  --composer: #ffffff;
+  --composer-shadow: #0000000d;
   --radius: 0.75rem;
 }

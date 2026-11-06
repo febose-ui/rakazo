@@ -54,7 +54,7 @@ export function ToolSteps({
                 {isCurrent ? "◷" : "✓"}
               </span>
               <span
-                className={`min-w-0 flex-1 truncate text-[13px] ${
+                className={`min-w-0 flex-1 truncate font-mono text-xs leading-relaxed ${
                   isCurrent ? "text-foreground" : "text-muted-foreground"
                 }`}
                 title={step.label}
@@ -107,6 +107,13 @@ export function ToolActivityDisclosure({
           className="transition-transform duration-150 group-data-panel-open:rotate-90 motion-reduce:transition-none"
         />
         <span className="flex items-center gap-2">
+          {live ? (
+            <span
+              aria-hidden
+              className="size-1.5 rounded-full bg-foreground/70"
+              style={{ animation: "rkPulse 1.2s ease-in-out infinite" }}
+            />
+          ) : null}
           <span>{live ? <Trans>Working…</Trans> : <Trans>Done</Trans>}</span>
           <span>
             <Plural value={toolCount} one="# tool" other="# tools" />
@@ -115,7 +122,9 @@ export function ToolActivityDisclosure({
         </span>
       </CollapsibleTrigger>
       <CollapsibleContent hiddenUntilFound>
-        <div className="ms-[7px] mt-0.5 border-s border-border ps-3">{children}</div>
+        <div className="ms-[7px] mt-1 border-s border-border py-1 ps-3.5 text-muted-foreground">
+          {children}
+        </div>
       </CollapsibleContent>
     </Collapsible>
   );

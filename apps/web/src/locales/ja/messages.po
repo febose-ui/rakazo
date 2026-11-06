@@ -6797,6 +6797,10 @@ msgstr "Rakazoに最も手伝ってほしいことは何ですか？"
 msgid "What do you want me on first?"
 msgstr "まず何から取りかかりましょうか？"
 
+#: src/pages/shell/transcript.tsx
+msgid "What do you want to know?"
+msgstr "何を知りたいですか？"
+
 #: src/components/teach/TeachComputerOverlay.tsx
 msgid "What result will you demonstrate?"
 msgstr "どんな結果を実演しますか？"

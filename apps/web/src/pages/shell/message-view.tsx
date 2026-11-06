@@ -248,7 +248,7 @@ export const MessageView = memo(function MessageView({
           <div className="flex w-fit max-w-full justify-start [@media(hover:none)]:w-full">
             <div
               data-testid="message-bot-bubble"
-              className="max-w-full space-y-2.5 rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+              className="max-w-full space-y-2.5 py-1 text-chat text-foreground"
               dir="auto"
             >
               {visibleNarrationBlocks.map((block, i) => {
@@ -406,7 +406,7 @@ export const MessageView = memo(function MessageView({
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+                  className="max-w-full py-1 text-chat text-foreground"
                   dir="auto"
                 >
                   <ChatMarkdown streaming renderMention={renderMention} onOpenPage={openPage}>
@@ -533,7 +533,7 @@ export const MessageView = memo(function MessageView({
                 <div
                   data-testid="message-user-bubble"
                   data-quote-message-id={quoteMessageId}
-                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[20px] bg-chat-user px-[18px] py-3 text-body1 text-chat-user-foreground"
+                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-2xl bg-chat-user px-4 py-3 text-chat leading-6 text-chat-user-foreground"
                   dir="auto"
                 >
                   <LinkifiedText onOpenPage={openPage}>{block.text}</LinkifiedText>
@@ -550,7 +550,7 @@ export const MessageView = memo(function MessageView({
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full rounded-[20px] bg-muted px-[18px] py-3 text-body1 text-foreground"
+                  className="max-w-full py-1 text-chat text-foreground"
                   dir="auto"
                 >
                   <div data-quote-message-id={quoteMessageId}>
@@ -577,7 +577,7 @@ export const MessageView = memo(function MessageView({
           if (block.kind === "card") {
             return (
               <div key={i} className="flex justify-start">
-                <div className="flex flex-col gap-2 rounded-[20px] bg-muted px-5 py-4">
+                <div className="flex flex-col gap-2 rounded-2xl border border-border bg-card px-5 py-4">
                   {block.lines.map((line) => (
                     <div key={line.k} className="flex items-baseline gap-2.5 text-[15px]">
                       <span className="text-success">✓</span>

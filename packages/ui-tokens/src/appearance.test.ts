@@ -207,6 +207,23 @@ describe.each([
   });
 });
 
+describe("web dark palette readability", () => {
+  it.each(["background", "card", "muted", "composer", "chatUser", "sidebar"] as const)(
+    "keeps body, secondary and faint text readable on %s",
+    (surface) => {
+      const on = webDarkTokens[surface];
+      expect(contrastRatio(webDarkTokens.foreground, on)).toBeGreaterThanOrEqual(4.5);
+      expect(contrastRatio(webDarkTokens.mutedForeground, on)).toBeGreaterThanOrEqual(4.5);
+      expect(contrastRatio(webDarkTokens.faintForeground, on)).toBeGreaterThanOrEqual(3);
+    },
+  );
+
+  it("lifts the composer and the user bubble off the canvas", () => {
+    expect(webDarkTokens.composer).not.toBe(webDarkTokens.background);
+    expect(webDarkTokens.chatUser).not.toBe(webDarkTokens.background);
+  });
+});
+
 describe("tokens.css", () => {
   it("derives kebab-case variable names", () => {
     expect(cssVariableName("background")).toBe("--background");

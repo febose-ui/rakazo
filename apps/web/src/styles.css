@@ -13,6 +13,7 @@ body,
   color: var(--foreground);
   font-family: var(--font-sans);
   font-weight: var(--font-weight-normal);
+  letter-spacing: -0.015em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -148,9 +148,9 @@
   max-width: 100%;
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 0.75em;
-  background: var(--secondary);
-  padding: 0.8em 0.9em;
+  border-radius: 0.75rem;
+  background: var(--card);
+  padding: 0.9em 1em;
   direction: ltr;
   unicode-bidi: isolate;
 }

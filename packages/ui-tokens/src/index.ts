@@ -182,6 +182,10 @@ export const lightTokens = {
 export type WebColorTokens = ColorTokens & {
   primaryHover: string;
   primaryDisabled: string;
+  /** The message composer's surface, a step above the page so it floats over the chat. */
+  composer: string;
+  /** The soft shadow under the floating composer. */
+  composerShadow: string;
 };
 
 /**
@@ -191,36 +195,37 @@ export type WebColorTokens = ColorTokens & {
  * and selection are the ink at an opacity, so they read the same on every surface.
  */
 export const webDarkOverrides = {
-  background: "#161616",
-  dialog: "#1F1F1F",
-  foreground: "#F5F5F5",
-  card: "#1F1F1F",
-  cardForeground: "#F5F5F5",
-  popover: "#1F1F1F",
-  popoverForeground: "#F5F5F5",
-  primary: "#F5F5F5",
-  primaryHover: "#DBDBDB",
-  primaryDisabled: "#F5F5F521",
-  primaryForeground: "#121212",
-  secondary: "#F5F5F50A",
-  secondaryForeground: "#F5F5F5",
-  chatUser: "#3E3E3E",
-  chatUserForeground: "#F5F5F5",
-  muted: "#1F1F1F",
-  mutedForeground: "#F5F5F5A8",
-  faintForeground: "#F5F5F58A",
-  accent: "#F5F5F50F",
-  accentForeground: "#F5F5F5",
+  // An OLED-black canvas; raised surfaces step up through near-black charcoal.
+  background: "#000000",
+  dialog: "#0F0F10",
+  foreground: "#F4F4F5",
+  card: "#09090B",
+  cardForeground: "#F4F4F5",
+  popover: "#0F0F10",
+  popoverForeground: "#F4F4F5",
+  primary: "#FFFFFF",
+  primaryHover: "#E4E4E7",
+  primaryDisabled: "#FFFFFF1F",
+  primaryForeground: "#000000",
+  secondary: "#FFFFFF0F",
+  secondaryForeground: "#F4F4F5",
+  chatUser: "#18181B",
+  chatUserForeground: "#F4F4F5",
+  muted: "#121214",
+  mutedForeground: "#A1A1AA",
+  faintForeground: "#71717A",
+  accent: "#FFFFFF0F",
+  accentForeground: "#F4F4F5",
   destructive: "#FF6463",
   destructiveFill: "#CF2B35",
-  border: "#F5F5F51A",
-  input: "#F5F5F538",
+  border: "#FFFFFF1A",
+  input: "#FFFFFF33",
   ring: "#1884FC",
-  sidebar: "#0E0E0E",
-  sidebarForeground: "#F5F5F5",
-  sidebarBorder: "#F5F5F51A",
-  sidebarAccent: "#F5F5F514",
-  sidebarAccentForeground: "#F5F5F5",
+  sidebar: "#000000",
+  sidebarForeground: "#F4F4F5",
+  sidebarBorder: "#FFFFFF0D",
+  sidebarAccent: "#FFFFFF14",
+  sidebarAccentForeground: "#F4F4F5",
   link: "#4D9BFF",
   success: "#00BA69",
   warning: "#E28600",
@@ -228,8 +233,10 @@ export const webDarkOverrides = {
   unread: "#4D9BFF",
   workingDot: "#0E9F5A",
   overlay: "#000000B2",
-  scrollbar: "#F5F5F538",
-  scrollbarHover: "#F5F5F580",
+  scrollbar: "#FFFFFF26",
+  scrollbarHover: "#FFFFFF4D",
+  composer: "#141416",
+  composerShadow: "#00000066",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webLightOverrides = {
@@ -269,6 +276,8 @@ export const webLightOverrides = {
   overlay: "#00000080",
   scrollbar: "#1C1C1C3D",
   scrollbarHover: "#1C1C1C85",
+  composer: "#FFFFFF",
+  composerShadow: "#0000000D",
 } as const satisfies Partial<WebColorTokens>;
 
 export const webDarkTokens: WebColorTokens = { ...darkTokens, ...webDarkOverrides };
