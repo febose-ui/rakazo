@@ -82,7 +82,7 @@
   --color-scrollbar: var(--scrollbar);
   --color-scrollbar-hover: var(--scrollbar-hover);
   --color-composer: var(--composer);
-  --shadow-composer: 0 8px 30px var(--composer-shadow);
+  --shadow-composer: 0 8px 32px var(--composer-shadow);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

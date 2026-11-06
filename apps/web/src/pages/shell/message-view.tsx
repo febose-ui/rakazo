@@ -36,6 +36,7 @@ import {
   shouldRenderToolCard,
   toolStepCount,
 } from "../../lib/tool-activity-view";
+import { hasCodeFence } from "../../lib/transcript-layout";
 import { ReplyLine } from "./chat-context";
 import { FALLBACK_BOT_COLOR, previewMessageText } from "./chat-shared";
 import type { ImportSetupTarget } from "./import-setup-card";
@@ -241,14 +242,18 @@ export const MessageView = memo(function MessageView({
         </>
       );
     }
+    const code = visibleNarrationBlocks.some(
+      (block) => (block.kind === "text" || block.kind === "progress") && hasCodeFence(block.text),
+    );
+    const width = code ? "w-full" : "w-fit";
     return (
       <>
         {messageContext}
-        <div className="relative w-fit max-w-full [@media(hover:none)]:w-full">
-          <div className="flex w-fit max-w-full justify-start [@media(hover:none)]:w-full">
+        <div className={`relative ${width} max-w-full [@media(hover:none)]:w-full`}>
+          <div className={`flex ${width} max-w-full justify-start [@media(hover:none)]:w-full`}>
             <div
               data-testid="message-bot-bubble"
-              className="max-w-full space-y-2.5 py-1 text-chat text-foreground"
+              className={`${code ? "min-w-0 flex-1" : ""} max-w-full space-y-2.5 py-1 text-chat text-foreground`}
               dir="auto"
             >
               {visibleNarrationBlocks.map((block, i) => {
@@ -533,7 +538,7 @@ export const MessageView = memo(function MessageView({
                 <div
                   data-testid="message-user-bubble"
                   data-quote-message-id={quoteMessageId}
-                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-2xl bg-chat-user px-4 py-3 text-chat leading-6 text-chat-user-foreground"
+                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[20px] border border-border bg-chat-user px-4 py-3 text-chat leading-6 text-chat-user-foreground"
                   dir="auto"
                 >
                   <LinkifiedText onOpenPage={openPage}>{block.text}</LinkifiedText>
@@ -543,14 +548,15 @@ export const MessageView = memo(function MessageView({
             );
           }
           if (block.kind === "text") {
+            const code = hasCodeFence(block.text);
             return (
               <div
                 key={i}
-                className="relative flex w-fit max-w-full justify-start [@media(hover:none)]:w-full [@media(hover:none)]:flex-wrap"
+                className={`relative flex ${code ? "w-full" : "w-fit"} max-w-full justify-start [@media(hover:none)]:w-full [@media(hover:none)]:flex-wrap`}
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full py-1 text-chat text-foreground"
+                  className={`${code ? "min-w-0 flex-1" : ""} max-w-full py-1 text-chat text-foreground`}
                   dir="auto"
                 >
                   <div data-quote-message-id={quoteMessageId}>

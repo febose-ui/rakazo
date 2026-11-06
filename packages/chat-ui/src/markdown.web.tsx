@@ -80,7 +80,16 @@ function preserveSkippedTableText() {
   };
 }
 
-function CopyButton({ read, label }: { read: () => string; label: string }) {
+function CopyButton({
+  read,
+  label,
+  inline = false,
+}: {
+  read: () => string;
+  label: string;
+  /** Sits in a code block's header instead of floating over the block's corner. */
+  inline?: boolean;
+}) {
   const copy = useMarkdownCopy();
   const [copied, copyText, copyFailed, resetCopy, failedText] = useCopyText();
 
@@ -88,7 +97,9 @@ function CopyButton({ read, label }: { read: () => string; label: string }) {
     <>
       <button
         type="button"
-        className="rk-chat-markdown-copy"
+        className={
+          inline ? "rk-chat-markdown-copy rk-chat-markdown-copy-inline" : "rk-chat-markdown-copy"
+        }
         onClick={() => copyText(read())}
         aria-label={copied ? copy.copied : label}
       >
@@ -107,13 +118,33 @@ function CopyButton({ read, label }: { read: () => string; label: string }) {
 function CodeBlock({
   copyable,
   prose,
+  language,
   ...props
-}: React.ComponentPropsWithoutRef<"pre"> & { copyable: boolean; prose: boolean }) {
+}: React.ComponentPropsWithoutRef<"pre"> & {
+  copyable: boolean;
+  prose: boolean;
+  language: string;
+}) {
   const copy = useMarkdownCopy();
   const preRef = useRef<HTMLPreElement>(null);
   // The parser ends a fence's code with a newline the author didn't write.
   const readCode = useCallback(() => (preRef.current?.textContent ?? "").replace(/\n$/, ""), []);
 
+  // Code gets a header naming the fence's language beside Copy; a prose fence stays a plain card.
+  if (!prose && (language || copyable)) {
+    return (
+      <div
+        className="rk-chat-markdown-pre-wrap rk-chat-markdown-code"
+        data-testid="chat-code-block"
+      >
+        <div className="rk-chat-markdown-code-head">
+          <span className="rk-chat-markdown-code-lang">{language}</span>
+          {copyable ? <CopyButton read={readCode} label={copy.copyCode} inline /> : null}
+        </div>
+        <pre {...props} ref={preRef} />
+      </div>
+    );
+  }
   return (
     <div className="rk-chat-markdown-pre-wrap">
       <pre {...props} className={prose ? "rk-chat-markdown-pre-prose" : undefined} ref={preRef} />
@@ -183,10 +214,16 @@ function MarkdownPre({
   const streamingSource = useContext(StreamingSourceContext);
   const diagram = mermaidFenceSource(node);
   // Prose an author wrote in a fence reads as prose; code keeps the monospaced font.
-  const prose = diagram === undefined && isProseFence(fenceLanguage(node));
+  const language = fenceLanguage(node);
+  const prose = diagram === undefined && isProseFence(language);
   // An empty fence has nothing to copy.
   const codeBlock = (
-    <CodeBlock {...props} copyable={/\S/.test(codeText(codeElement(node)))} prose={prose} />
+    <CodeBlock
+      {...props}
+      copyable={/\S/.test(codeText(codeElement(node)))}
+      prose={prose}
+      language={language}
+    />
   );
   if (diagram === undefined) return codeBlock;
   // Parser offsets identify the fence inside quotes and lists too. Inspect the original source,

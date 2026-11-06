@@ -641,7 +641,7 @@ describe("Composer", () => {
   });
 
   it.each([false, true])(
-    "draws an idle Send button as a quiet icon, solid only once it can send (running: %s)",
+    "draws an idle Send button as a dim disc, solid only once it can send (running: %s)",
     (running) => {
       renderComposer(vi.fn(), { running });
       const send = container?.querySelector<HTMLButtonElement>('button[aria-label="Send"]');
@@ -650,7 +650,7 @@ describe("Composer", () => {
         expect.arrayContaining([
           "bg-primary",
           "hover:bg-primary-hover",
-          "disabled:bg-transparent",
+          "disabled:bg-primary-disabled",
           "disabled:text-faint-foreground",
           "disabled:opacity-100",
         ]),

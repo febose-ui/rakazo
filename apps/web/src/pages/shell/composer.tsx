@@ -985,7 +985,7 @@ const ComposerBody = memo(function Composer({
               autoComplete="off"
               dir="auto"
               rows={1}
-              className={`${COMPOSER_TEXT} block max-h-25 min-h-[24px] w-full resize-none overflow-y-auto bg-transparent text-transparent caret-foreground outline-none placeholder:text-muted-foreground selection:bg-ring/30 selection:text-transparent disabled:opacity-40 forced-colors:text-[CanvasText]`}
+              className={`${COMPOSER_TEXT} block max-h-55 min-h-[24px] w-full resize-none overflow-y-auto bg-transparent text-transparent caret-foreground outline-none placeholder:text-muted-foreground selection:bg-ring/30 selection:text-transparent disabled:opacity-40 forced-colors:text-[CanvasText]`}
             />
             <ComposerMentionHighlights
               ref={mirrorRef}
@@ -1014,19 +1014,18 @@ const ComposerBody = memo(function Composer({
                 aria-label={t`Send`}
                 disabled={sending || !canSend || disabled}
                 onClick={() => void send()}
-                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-transparent disabled:text-faint-foreground disabled:opacity-100"
+                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-primary-disabled disabled:text-faint-foreground disabled:opacity-100"
               >
                 <ArrowUp size={16} strokeWidth={2.2} />
               </Button>
               <Button
-                variant="outline"
                 size="icon"
                 aria-label={t`Stop`}
                 disabled={sending}
                 onClick={() => void onStop()}
-                className="size-8 rounded-full border border-border bg-transparent text-foreground/80 transition-colors duration-150 hover:bg-accent hover:text-foreground"
+                className="size-8 rounded-full transition-[transform,background-color] duration-150 hover:bg-primary-hover active:scale-95"
               >
-                <Square size={11} strokeWidth={0} fill="currentColor" />
+                <Square size={10} strokeWidth={0} fill="currentColor" />
               </Button>
             </>
           ) : (
@@ -1039,7 +1038,7 @@ const ComposerBody = memo(function Composer({
                 aria-label={t`Send`}
                 disabled={sending || !canSend || disabled}
                 onClick={() => void send()}
-                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-transparent disabled:text-faint-foreground disabled:opacity-100"
+                className="size-8 shrink-0 rounded-full transition-[transform,background-color,color] duration-150 hover:bg-primary-hover active:scale-95 disabled:bg-primary-disabled disabled:text-faint-foreground disabled:opacity-100"
               >
                 <ArrowUp size={16} strokeWidth={2.2} />
               </Button>

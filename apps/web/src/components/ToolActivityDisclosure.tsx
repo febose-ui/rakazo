@@ -7,7 +7,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@rakazo/ui-web/components/ui/collapsible";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import type { ReactNode } from "react";
 import { Fragment } from "react";
 import { toolStepCount } from "../lib/tool-activity-view";
@@ -96,16 +96,10 @@ export function ToolActivityDisclosure({
       className="group"
     >
       <CollapsibleTrigger
-        className={`flex min-h-6 w-fit cursor-pointer list-none items-center gap-1 rounded-md py-0.5 pe-1.5 text-[13px] font-medium outline-none hover:text-foreground/75 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+        className={`flex min-h-6 w-fit cursor-pointer list-none items-center gap-1.5 rounded-md py-0.5 pe-1.5 text-[13px] font-medium outline-none hover:text-foreground/75 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
           live ? "text-foreground/75" : "text-muted-foreground"
         }`}
       >
-        <ChevronRight
-          aria-hidden
-          size={14}
-          strokeWidth={1.8}
-          className="transition-transform duration-150 group-data-panel-open:rotate-90 motion-reduce:transition-none"
-        />
         <span className="flex items-center gap-2">
           {live ? (
             <span
@@ -120,9 +114,15 @@ export function ToolActivityDisclosure({
           </span>
           {!live && duration ? <span>{duration}</span> : null}
         </span>
+        <ChevronDown
+          aria-hidden
+          size={14}
+          strokeWidth={1.8}
+          className="transition-transform duration-150 group-data-panel-open:rotate-180 motion-reduce:transition-none"
+        />
       </CollapsibleTrigger>
       <CollapsibleContent hiddenUntilFound>
-        <div className="ms-[7px] mt-1 border-s border-border py-1 ps-3.5 text-muted-foreground">
+        <div className="my-2 ms-[3px] border-s-2 border-border py-1 ps-4 text-[13px] leading-relaxed text-muted-foreground">
           {children}
         </div>
       </CollapsibleContent>

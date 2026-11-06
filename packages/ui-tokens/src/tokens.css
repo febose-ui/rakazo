@@ -4,14 +4,14 @@
 [data-theme="dark"] {
   color-scheme: dark;
   --background: #000000;
-  --dialog: #0f0f10;
+  --dialog: #0e0e10;
   --foreground: #f4f4f5;
   --card: #09090b;
   --card-foreground: #f4f4f5;
-  --popover: #0f0f10;
+  --popover: #121214;
   --popover-foreground: #f4f4f5;
-  --glass-fill: #2c2c2e;
-  --glass-stroke: #fcfcfc26;
+  --glass-fill: #121214;
+  --glass-stroke: #ffffff14;
   --primary: #ffffff;
   --primary-foreground: #000000;
   --secondary: #ffffff0f;
@@ -19,21 +19,21 @@
   --chat-user: #18181b;
   --chat-user-foreground: #f4f4f5;
   --muted: #121214;
-  --muted-foreground: #a1a1aa;
-  --faint-foreground: #71717a;
-  --accent: #ffffff0f;
-  --accent-foreground: #f4f4f5;
+  --muted-foreground: #787881;
+  --faint-foreground: #52525b;
+  --accent: #ffffff14;
+  --accent-foreground: #ffffff;
   --destructive: #ff6463;
   --destructive-fill: #cf2b35;
   --destructive-foreground: #ffffff;
-  --border: #ffffff1a;
-  --input: #ffffff33;
-  --ring: #1884fc;
+  --border: #ffffff14;
+  --input: #ffffff26;
+  --ring: #ffffff;
   --sidebar: #000000;
   --sidebar-foreground: #f4f4f5;
-  --sidebar-border: #ffffff0d;
+  --sidebar-border: #ffffff0f;
   --sidebar-accent: #ffffff14;
-  --sidebar-accent-foreground: #f4f4f5;
+  --sidebar-accent-foreground: #ffffff;
   --link: #4d9bff;
   --favicon-plate: #ffffff;
   --success: #00ba69;
@@ -42,8 +42,8 @@
   --unread: #4d9bff;
   --working-dot: #0e9f5a;
   --overlay: #000000b2;
-  --scrollbar: #ffffff26;
-  --scrollbar-hover: #ffffff4d;
+  --scrollbar: #1c1c1f;
+  --scrollbar-hover: #2e2e33;
   --page-icon-sheet: #2c2c2e;
   --page-icon-edge: #363638;
   --page-icon-fold: #3c3c3e;
@@ -54,8 +54,8 @@
   --page-tile-line: #626262;
   --primary-hover: #e4e4e7;
   --primary-disabled: #ffffff1f;
-  --composer: #141416;
-  --composer-shadow: #00000066;
+  --composer: #121214;
+  --composer-shadow: #00000099;
   --radius: 0.75rem;
 }
 
