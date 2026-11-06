@@ -2806,6 +2806,10 @@ msgstr "Descargar PDF"
 msgid "Downloading…"
 msgstr "Descargando…"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "Redactar un correo"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "Habilidad en borrador"
@@ -3001,6 +3005,10 @@ msgstr "Expandir tabla"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "caducado"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "Explicar un tema de forma sencilla"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "Fijar"
 msgid "Pinned"
 msgstr "Fijados"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "Planificar mi semana"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "Reproducir {name}"
@@ -6011,6 +6023,10 @@ msgstr "Suscribirse con tu propia IA"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr "Se requiere una suscripción"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "Resumir una página web"
 
 #: src/lib/cron.ts
 msgid "Sunday"

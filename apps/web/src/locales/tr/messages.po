@@ -2806,6 +2806,10 @@ msgstr "PDF indir"
 msgid "Downloading…"
 msgstr ""
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "Bir e-posta taslağı yaz"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "Taslak beceri"
@@ -3001,6 +3005,10 @@ msgstr "Tabloyu genişlet"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "süresi doldu"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "Bir konuyu basitçe açıkla"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "Sabitle"
 msgid "Pinned"
 msgstr "Sabitlenenler"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "Haftamı planla"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "{name} dosyasını oynat"
@@ -6011,6 +6023,10 @@ msgstr "Kendi yapay zekânla abone ol"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr ""
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "Bir web sayfasını özetle"
 
 #: src/lib/cron.ts
 msgid "Sunday"
