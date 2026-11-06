@@ -854,7 +854,6 @@ msgstr "审批边界"
 msgid "Approval model"
 msgstr "审批模型"
 
-#: src/pages/settings-nav.ts
 #: src/pages/SpaceSettingOverrides.tsx
 msgid "Approvals"
 msgstr "审批"
@@ -2754,10 +2753,6 @@ msgstr "Docker 已配置，但电脑没有响应。请确认 sandbox supervisor 
 msgid "Docker limits access to your computer for added security. Using {hostLabel} lets bots work with your local files and tools."
 msgstr "Docker 限制对你电脑的访问，以提高安全性。使用{hostLabel}时，Bot 可以处理你的本地文件并使用本地工具。"
 
-#: src/components/SidebarFooter.tsx
-msgid "Docs"
-msgstr "文档"
-
 #: src/pages/KnowledgeSection.tsx
 msgid "Document changed. Reopen to edit the latest version."
 msgstr "文档已更改。请重新打开以编辑最新版本。"
@@ -3189,10 +3184,6 @@ msgstr ""
 msgid "General"
 msgstr "通用"
 
-#: src/components/SidebarFooter.tsx
-msgid "Get the mobile app"
-msgstr "获取移动应用"
-
 #: src/components/ComputerUpdateProgress.tsx
 msgid "Getting ready"
 msgstr "正在准备"
@@ -3497,10 +3488,6 @@ msgstr "验证码无效"
 
 #: src/pages/shell/chat-header.tsx
 msgid "Invite a friend"
-msgstr "邀请朋友"
-
-#: src/components/SidebarFooter.tsx
-msgid "Invite friends"
 msgstr "邀请朋友"
 
 #: src/components/InviteDialog.tsx
@@ -4680,6 +4667,7 @@ msgstr "已暂停"
 msgid "Pending"
 msgstr "待处理"
 
+#: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx
 msgid "Permissions"
 msgstr "权限"

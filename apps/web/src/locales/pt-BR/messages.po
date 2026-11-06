@@ -854,7 +854,6 @@ msgstr "Limites de aprovação"
 msgid "Approval model"
 msgstr "Modelo de aprovação"
 
-#: src/pages/settings-nav.ts
 #: src/pages/SpaceSettingOverrides.tsx
 msgid "Approvals"
 msgstr "Aprovações"
@@ -2754,10 +2753,6 @@ msgstr ""
 msgid "Docker limits access to your computer for added security. Using {hostLabel} lets bots work with your local files and tools."
 msgstr "O Docker limita o acesso ao seu computador para maior segurança. Usar {hostLabel} permite que os bots trabalhem com seus arquivos e ferramentas locais."
 
-#: src/components/SidebarFooter.tsx
-msgid "Docs"
-msgstr "Documentação"
-
 #: src/pages/KnowledgeSection.tsx
 msgid "Document changed. Reopen to edit the latest version."
 msgstr "O documento mudou. Reabra para editar a versão mais recente."
@@ -3189,10 +3184,6 @@ msgstr ""
 msgid "General"
 msgstr "Geral"
 
-#: src/components/SidebarFooter.tsx
-msgid "Get the mobile app"
-msgstr "Baixar o aplicativo móvel"
-
 #: src/components/ComputerUpdateProgress.tsx
 msgid "Getting ready"
 msgstr ""
@@ -3498,10 +3489,6 @@ msgstr "Código inválido"
 #: src/pages/shell/chat-header.tsx
 msgid "Invite a friend"
 msgstr "Convidar um amigo"
-
-#: src/components/SidebarFooter.tsx
-msgid "Invite friends"
-msgstr "Convidar amigos"
 
 #: src/components/InviteDialog.tsx
 msgid "Invite link"
@@ -4680,6 +4667,7 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
+#: src/pages/settings-nav.ts
 #: src/pages/shell/bot-panel.tsx
 msgid "Permissions"
 msgstr "Permissões"
