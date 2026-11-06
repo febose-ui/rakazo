@@ -253,7 +253,7 @@ export const MessageView = memo(function MessageView({
           <div className={`flex ${width} max-w-full justify-start [@media(hover:none)]:w-full`}>
             <div
               data-testid="message-bot-bubble"
-              className={`${code ? "min-w-0 flex-1" : ""} max-w-full space-y-2.5 py-1 text-chat text-foreground`}
+              className={`${code ? "min-w-0 flex-1" : ""} max-w-full space-y-2.5 rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground`}
               dir="auto"
             >
               {visibleNarrationBlocks.map((block, i) => {
@@ -411,7 +411,7 @@ export const MessageView = memo(function MessageView({
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className="max-w-full py-1 text-chat text-foreground"
+                  className="max-w-full rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground"
                   dir="auto"
                 >
                   <ChatMarkdown streaming renderMention={renderMention} onOpenPage={openPage}>
@@ -538,7 +538,7 @@ export const MessageView = memo(function MessageView({
                 <div
                   data-testid="message-user-bubble"
                   data-quote-message-id={quoteMessageId}
-                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[20px] border border-border bg-chat-user px-4 py-3 text-chat leading-6 text-chat-user-foreground"
+                  className="max-w-full whitespace-pre-wrap wrap-anywhere rounded-[22px] rounded-ee-sm bg-chat-user px-4 py-2.5 text-chat leading-relaxed text-chat-user-foreground"
                   dir="auto"
                 >
                   <LinkifiedText onOpenPage={openPage}>{block.text}</LinkifiedText>
@@ -556,7 +556,7 @@ export const MessageView = memo(function MessageView({
               >
                 <div
                   data-testid="message-bot-bubble"
-                  className={`${code ? "min-w-0 flex-1" : ""} max-w-full py-1 text-chat text-foreground`}
+                  className={`${code ? "min-w-0 flex-1" : ""} max-w-full rounded-2xl border border-border bg-muted p-4 text-chat leading-relaxed text-foreground`}
                   dir="auto"
                 >
                   <div data-quote-message-id={quoteMessageId}>

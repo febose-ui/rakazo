@@ -55,7 +55,7 @@ export function ChatHeader({
         data-testid="bot-settings-trigger"
         aria-expanded={panelOpen}
         onClick={onTogglePanel}
-        className="app-no-drag h-auto min-w-0 gap-2 py-1 ps-1 pe-3.5"
+        className="app-no-drag h-9 min-w-0 gap-2 rounded-full border border-border bg-muted/80 ps-1.5 pe-3.5 transition-colors duration-150 hover:border-input hover:bg-muted"
       >
         {inGroup ? (
           <GroupAvatar members={activeSnapshot?.members ?? activeGroup?.members ?? []} size={26} />

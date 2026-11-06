@@ -9,6 +9,8 @@ import type {
 import {
   answerableAskMessageIds,
   channelMessageSender,
+  chatUserBubbleColors,
+  darkenHex,
   dismissableAskMessageIds,
   foldPeerReplies,
   groupBotsForSidebar,
@@ -23,6 +25,7 @@ import { Button } from "@rakazo/ui-web";
 import { useIsMobile } from "@rakazo/ui-web/hooks/use-mobile";
 import { useQuery } from "@tanstack/react-query";
 import { Lock, Monitor, Moon, Plug, Plus, ScrollText, Sun, Users } from "lucide-react";
+import type { CSSProperties } from "react";
 import {
   Suspense,
   useCallback,
@@ -286,6 +289,11 @@ function SpaceShell() {
       navigate(`/app/${id}`);
     },
     [navigate, setMobileSidebarOpen],
+  );
+  // Your bubbles and the Send button take the bot's color in its own chat.
+  const botTint = useMemo(
+    () => (active ? chatUserBubbleColors(active.color, active.id) : undefined),
+    [active?.color, active?.id],
   );
   const activeGroup = groups.find((group) => group.id === groupId);
   const activeBotId = useRef<string | undefined>(inGroup ? undefined : active?.id);
@@ -988,6 +996,14 @@ function SpaceShell() {
         aria-hidden={mobileSidebarOpen || undefined}
         inert={mobileSidebarOpen}
         className="isolate flex min-w-0 flex-1 flex-col bg-background"
+        style={
+          botTint
+            ? ({
+                "--chat-user": botTint.background,
+                "--chat-user-foreground": botTint.foreground,
+              } as CSSProperties)
+            : undefined
+        }
       >
         {/* Inside main so the composer and its menus stay above it. */}
         {!mobileSidebarOpen ? (
@@ -1085,7 +1101,18 @@ function SpaceShell() {
         {active || activeGroup ? (
           // Let messages continue behind the composer's rounded top corners. An empty chat
           // gives the composer half the height so it rises to the middle under the greeting.
-          <div className={`pointer-events-none relative z-30 -mt-7 ${emptyChat ? "flex-1" : ""}`}>
+          <div
+            className={`pointer-events-none relative z-30 -mt-7 ${emptyChat ? "flex-1" : ""}`}
+            style={
+              botTint
+                ? ({
+                    "--primary": botTint.background,
+                    "--primary-foreground": botTint.foreground,
+                    "--primary-hover": darkenHex(botTint.background, 10),
+                  } as CSSProperties)
+                : undefined
+            }
+          >
             {recordingSkill ? (
               <div className="pointer-events-auto bg-background px-6 pb-2 text-center text-[13px] text-destructive">
                 <Trans>Teaching in progress. Stop teaching before sending a new message.</Trans>

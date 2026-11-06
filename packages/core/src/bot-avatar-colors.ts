@@ -208,7 +208,8 @@ function isColorBright(hex: string): boolean {
   return brightness > 180;
 }
 
-function darkenHex(hex: string, percent: number): string {
+/** Each channel scaled down by `percent`, for a pressed or hovered shade of a color. */
+export function darkenHex(hex: string, percent: number): string {
   const num = Number.parseInt(expandHex(hex), 16);
   const factor = 1 - percent / 100;
   const r = Math.max(0, Math.floor(((num >> 16) & 255) * factor));

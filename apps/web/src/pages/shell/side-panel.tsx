@@ -131,6 +131,7 @@ export function ShellSidePanel({
                   size="icon-sm"
                   aria-label={t`Close panel`}
                   onClick={() => setPanel(null)}
+                  className="size-8 rounded-full bg-accent text-muted-foreground hover:bg-input/50 hover:text-foreground"
                 >
                   <X size={16} strokeWidth={1.8} />
                 </Button>

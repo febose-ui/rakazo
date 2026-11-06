@@ -18,7 +18,7 @@ import {
   updateComposerMentionBindings,
 } from "@rakazo/core";
 import { Button } from "@rakazo/ui-web";
-import { ArrowUp, Box, Paperclip, Settings, Square, X } from "lucide-react";
+import { ArrowUp, Box, Paperclip, Plus, Settings, Square, X } from "lucide-react";
 import type { ClipboardEvent, ComponentProps, DragEvent, RefObject } from "react";
 import {
   memo,
@@ -269,8 +269,8 @@ const ComposerBody = memo(function Composer({
     composerFieldRef,
     expanded,
   } = useComposerLayout(draft, selectedSkill !== null);
-  // In the chat the text sits above a row of controls; docked over a page it stays one row.
-  const stacked = expanded || !docked;
+  // One pill row; text that outgrows it moves above the controls.
+  const stacked = expanded;
   const pendingCaret = useRef<ComposerMentionRange | null>(null);
   const completedSelection = useRef<number | null>(null);
   useLayoutEffect(() => {
@@ -820,12 +820,12 @@ const ComposerBody = memo(function Composer({
         ref={composerBarRef}
         data-testid="composer-bar"
         data-expanded={expanded}
-        className={`grid grid-cols-[auto_minmax(0,1fr)_auto] content-end items-center rounded-[28px] border border-border bg-composer pe-2.5 ps-2.5 shadow-composer transition-colors duration-150 focus-within:border-input ${
+        className={`grid grid-cols-[auto_minmax(0,1fr)_auto] content-end items-center border border-border bg-composer shadow-composer transition-colors duration-150 focus-within:border-input ${
           stacked
-            ? "gap-x-2 gap-y-2 pb-2.5 pt-3.5"
+            ? "gap-x-2 gap-y-2 rounded-[28px] pb-2.5 pt-3.5 ps-2.5 pe-2.5"
             : docked
-              ? "gap-x-3 py-[5px] ps-2 pe-2"
-              : "gap-x-3.5 py-[9px]"
+              ? "gap-x-3 rounded-full py-[5px] ps-2 pe-2"
+              : "gap-x-2 rounded-full py-2 ps-2 pe-2"
         }`}
       >
         <input
@@ -843,11 +843,11 @@ const ComposerBody = memo(function Composer({
           aria-label={t`Attach file`}
           disabled={disabled}
           onClick={() => fileInputRef.current?.click()}
-          className={`col-start-1 size-8 shrink-0 rounded-full text-muted-foreground transition-colors duration-150 hover:bg-accent hover:text-foreground ${
+          className={`col-start-1 size-8 shrink-0 rounded-full bg-accent text-muted-foreground transition-colors duration-150 hover:bg-input/50 hover:text-foreground ${
             stacked ? "row-start-2" : ""
           }`}
         >
-          <Paperclip size={17} strokeWidth={1.8} />
+          <Plus size={18} strokeWidth={1.8} />
         </Button>
         <div
           ref={composerFieldRef}

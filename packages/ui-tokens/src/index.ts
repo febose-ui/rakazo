@@ -226,7 +226,7 @@ export const webDarkOverrides = {
   sidebar: "#000000",
   sidebarForeground: "#F7F9F9",
   sidebarBorder: "#202327",
-  sidebarAccent: "#FFFFFF14",
+  sidebarAccent: "#202327",
   sidebarAccentForeground: "#F7F9F9",
   link: "#1D9BF0",
   success: "#00BA69",
