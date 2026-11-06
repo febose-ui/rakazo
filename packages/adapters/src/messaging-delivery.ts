@@ -16,6 +16,7 @@ import {
   createThreadMessageInTransaction,
   crossSpaceCommunicationAllowed,
   runAsSystem,
+  THREAD_LOCK_TRANSACTION_OPTIONS,
 } from "@rakazo/db";
 import { getLogger } from "@rakazo/logging";
 import { MessagingSendError } from "./chat-sdk-surface.js";
@@ -369,7 +370,7 @@ async function fanOutToPeers(
             type: "thread.message.created",
             payload: { messageId: created.id, role: "user", blocks: [block] },
           });
-        })
+        }, THREAD_LOCK_TRANSACTION_OPTIONS)
         .catch((error: unknown) => {
           if (error instanceof CrossSpaceCommunicationBlockedError) return null;
           throw error;
