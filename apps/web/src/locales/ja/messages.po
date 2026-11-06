@@ -2806,6 +2806,10 @@ msgstr "PDF をダウンロード"
 msgid "Downloading…"
 msgstr "ダウンロード中…"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "メールの下書きを作る"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "スキルの下書き"
@@ -3001,6 +3005,10 @@ msgstr "テーブルを拡大"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "期限切れ"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "トピックをわかりやすく説明する"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "ピン留め"
 msgid "Pinned"
 msgstr "ピン留め済み"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "今週の予定を立てる"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "{name}を再生"
@@ -6011,6 +6023,10 @@ msgstr "自分の AI で申し込む"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr "サブスクリプションが必要です"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "ウェブページを要約する"
 
 #: src/lib/cron.ts
 msgid "Sunday"

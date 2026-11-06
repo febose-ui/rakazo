@@ -2806,6 +2806,10 @@ msgstr "PDF 다운로드"
 msgid "Downloading…"
 msgstr ""
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "이메일 초안 작성하기"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "작업 기술 초안"
@@ -3001,6 +3005,10 @@ msgstr "표 확장"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "만료됨"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "주제를 쉽게 설명하기"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "고정"
 msgid "Pinned"
 msgstr "고정됨"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "이번 주 계획 세우기"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "{name} 재생"
@@ -6011,6 +6023,10 @@ msgstr "내 AI로 구독"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr ""
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "웹 페이지 요약하기"
 
 #: src/lib/cron.ts
 msgid "Sunday"

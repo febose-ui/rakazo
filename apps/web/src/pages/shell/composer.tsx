@@ -102,6 +102,7 @@ const ComposerBody = memo(function Composer({
   draftKey,
   enterToSend,
   docked = false,
+  fillRequest,
 }: {
   activeName?: string;
   running: boolean;
@@ -144,6 +145,8 @@ const ComposerBody = memo(function Composer({
   enterToSend: boolean;
   /** Floating over an open page instead of sitting under the chat. */
   docked?: boolean;
+  /** Text to put in this chat's draft, such as a picked starter; a new id asks again. */
+  fillRequest?: { id: number; draftKey: string; text: string } | null;
 }) {
   const { t } = useLingui();
   const [composition, setComposition] = useState(() => ({
@@ -297,6 +300,18 @@ const ComposerBody = memo(function Composer({
       }),
     [pageSession, draftKey],
   );
+  // A request made before this composer mounted belongs to whatever was open then.
+  const appliedFill = useRef(fillRequest?.id);
+  useEffect(() => {
+    if (!fillRequest || fillRequest.id === appliedFill.current) return;
+    appliedFill.current = fillRequest.id;
+    if (fillRequest.draftKey !== draftKey) return;
+    const current = compositionRef.current.text;
+    editSelections.current = [{ start: current.length, end: current.length }];
+    const next = current.trim() ? `${current.trimEnd()} ${fillRequest.text}` : fillRequest.text;
+    updateDraft(next);
+    pendingCaret.current = { start: next.length, end: next.length };
+  }, [fillRequest, draftKey]);
   const [replyAnnouncement, setReplyAnnouncement] = useState("");
   // What the live region currently holds — a send disarming the reply clears
   // "reply" text, while an explicit cancel must keep "Reply cancelled".

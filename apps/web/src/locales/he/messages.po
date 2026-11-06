@@ -2806,6 +2806,10 @@ msgstr "הורדת PDF"
 msgid "Downloading…"
 msgstr "מוריד…"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "לנסח אימייל"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "טיוטת מיומנות"
@@ -3001,6 +3005,10 @@ msgstr "הרחבת טבלה"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "פג תוקף"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "להסביר נושא בפשטות"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "הצמדה"
 msgid "Pinned"
 msgstr "מוצמדים"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "לתכנן את השבוע שלי"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "הפעלת {name}"
@@ -6011,6 +6023,10 @@ msgstr "הרשמה למנוי עם ה-AI שלך"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr "נדרש מנוי"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "לסכם דף אינטרנט"
 
 #: src/lib/cron.ts
 msgid "Sunday"

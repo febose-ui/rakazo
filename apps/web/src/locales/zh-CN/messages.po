@@ -2806,6 +2806,10 @@ msgstr "下载 PDF"
 msgid "Downloading…"
 msgstr "正在下载…"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "起草一封邮件"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "技能草稿"
@@ -3001,6 +3005,10 @@ msgstr "展开表格"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "已过期"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "简单解释一个话题"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "置顶"
 msgid "Pinned"
 msgstr "置顶"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "规划我的一周"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "播放 {name}"
@@ -6011,6 +6023,10 @@ msgstr "使用自己的 AI 订阅"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr "需要订阅"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "总结一个网页"
 
 #: src/lib/cron.ts
 msgid "Sunday"

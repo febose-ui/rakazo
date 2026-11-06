@@ -91,6 +91,7 @@ import { ShellSidePanel } from "./shell/side-panel";
 import { BotsSidebarLayout } from "./shell/sidebar-layout";
 import { SidebarRoster } from "./shell/sidebar-roster";
 import { commitSpaceRename, countUnreadChats, sidebarGroupsForSpaces } from "./shell/space-sidebar";
+import { StarterSuggestions } from "./shell/starter-suggestions";
 import { Transcript } from "./shell/transcript";
 import { useBrowserNotifications } from "./shell/use-browser-notifications";
 import { useChatRead } from "./shell/use-chat-read";
@@ -508,6 +509,12 @@ function SpaceShell() {
   const transcriptRunning = workingRuns.length > 0;
   const emptyChat =
     activeSnapshot != null && activeSnapshot.messages.length === 0 && !transcriptRunning;
+  const composerDraftKey = inGroup ? `group:${groupId}` : `bot:${active?.id}`;
+  const [starterFill, setStarterFill] = useState<{
+    id: number;
+    draftKey: string;
+    text: string;
+  } | null>(null);
   const composerRunning = currentRuns.some((run) => isActive(run.status));
   const transcript = useMemo(
     () => foldPeerReplies(activeSnapshot?.messages ?? [], { includePeerReceipts: true }),
@@ -1093,7 +1100,8 @@ function SpaceShell() {
             ) : null}
             <Composer
               key={inGroup ? `group:${groupId}` : `bot:${active?.id}`}
-              draftKey={inGroup ? `group:${groupId}` : `bot:${active?.id}`}
+              draftKey={composerDraftKey}
+              fillRequest={starterFill}
               enterToSend={enterToSend}
               activeName={inGroup ? (activeGroup?.name ?? activeSnapshot?.groupName) : active?.name}
               running={composerRunning}
@@ -1150,6 +1158,17 @@ function SpaceShell() {
                 }
               }}
             />
+            {emptyChat ? (
+              <StarterSuggestions
+                onPick={(text) =>
+                  setStarterFill((previous) => ({
+                    id: (previous?.id ?? 0) + 1,
+                    draftKey: composerDraftKey,
+                    text,
+                  }))
+                }
+              />
+            ) : null}
           </div>
         ) : null}
       </main>

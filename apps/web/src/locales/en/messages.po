@@ -2806,6 +2806,10 @@ msgstr "Download PDF"
 msgid "Downloading…"
 msgstr "Downloading…"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Draft an email"
+msgstr "Draft an email"
+
 #: src/components/teach/SkillDraftCard.tsx
 msgid "Draft skill"
 msgstr "Draft skill"
@@ -3001,6 +3005,10 @@ msgstr "Expand table"
 #: src/components/CloudAgentCard.tsx
 msgid "expired"
 msgstr "expired"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Explain a topic simply"
+msgstr "Explain a topic simply"
 
 #: src/components/AccountDataSettings.tsx
 #: src/pages/shell/bot-panel.tsx
@@ -4727,6 +4735,10 @@ msgstr "Pin"
 msgid "Pinned"
 msgstr "Pinned"
 
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Plan my week"
+msgstr "Plan my week"
+
 #: src/components/ArtifactFileCard.tsx
 msgid "Play {name}"
 msgstr "Play {name}"
@@ -6011,6 +6023,10 @@ msgstr "Subscribe with your own AI"
 #: src/pages/Paywall.tsx
 msgid "Subscription required"
 msgstr "Subscription required"
+
+#: src/pages/shell/starter-suggestions.tsx
+msgid "Summarize a web page"
+msgstr "Summarize a web page"
 
 #: src/lib/cron.ts
 msgid "Sunday"

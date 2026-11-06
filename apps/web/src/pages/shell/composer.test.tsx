@@ -659,6 +659,20 @@ describe("Composer", () => {
     },
   );
 
+  it("puts a picked starter in this chat's draft once, and ignores one for another chat", () => {
+    const stale = { id: 1, draftKey: "bot:bot-1", text: "Plan my week" };
+    const textarea = renderComposer(vi.fn(), { fillRequest: stale });
+    expect(textarea.value).toBe("");
+
+    rerenderComposer({ fillRequest: { id: 2, draftKey: "bot:other", text: "Draft an email" } });
+    expect(textarea.value).toBe("");
+
+    rerenderComposer({ fillRequest: { id: 3, draftKey: "bot:bot-1", text: "Draft an email" } });
+    expect(textarea.value).toBe("Draft an email");
+    rerenderComposer({});
+    expect(textarea.value).toBe("Draft an email");
+  });
+
   it("clears the draft once the message is sent", async () => {
     const onSend = vi.fn().mockResolvedValue(true);
     const textarea = renderComposer(onSend);
