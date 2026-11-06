@@ -50,6 +50,15 @@ writeExecutable(
   ].join("\n"),
 );
 
+// macOS checks the first run of a newly written script for longer than the
+// launcher probe's 0.2s crash window, which reads as a launcher that is still
+// running. Run each launcher once before a test measures it; in a Linux
+// computer image the launcher is a system binary with no such check.
+function primeLauncher(file: string) {
+  spawnSync(file, [], { stdio: "ignore", timeout: 5_000 });
+  rmSync(recorded, { force: true });
+}
+
 function hold(profile: string) {
   // The flag has to stay on this process. A shell would exec the sleep away.
   const child = spawn(
@@ -190,6 +199,7 @@ describe("provider focus command", () => {
         "\n",
       ),
     );
+    primeLauncher(path.join(workspace, "tool"));
     writeFileSync(windows, "");
     const command = await focusCommand({
       kind: "focus",
@@ -259,6 +269,7 @@ describe("provider focus command", () => {
   it("fails a focus URI when the launcher exits before the old window is raised", async () => {
     const failapp = path.join(bin, "failapp");
     writeExecutable(failapp, "#!/bin/sh\nexit 1\n");
+    primeLauncher(failapp);
     writeFileSync(windows, "0x00000004  0 4 failapp.Failapp host app\n");
     const command = await focusCommand({
       kind: "focus",

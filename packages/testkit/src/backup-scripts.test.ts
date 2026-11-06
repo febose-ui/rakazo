@@ -296,6 +296,11 @@ function contents(archive: string) {
   return execFileSync("/usr/bin/tar", ["-tzf", archive], { encoding: "utf8" });
 }
 
+// The production scripts target the Linux compose host: they lock with flock(1),
+// list snapshots with GNU find, and need bash 4+, none of which a macOS host's
+// /usr/bin:/bin provides.
+const linuxHost = process.platform === "linux";
+
 describe("development backup failures", () => {
   it.each([false, true])("archives data with a root env file present: %s", (hasEnv) => {
     const f = fixture();
@@ -721,7 +726,7 @@ PATH=/usr/bin:/bin exec mv "$@"
   });
 });
 
-describe("production backup deployment and archive behavior", () => {
+describe.skipIf(!linuxHost)("production backup deployment and archive behavior", () => {
   it.each([false, true])("uses the configured deployment directory: %s", (custom) => {
     const f = fixture();
     const deployment = custom ? f.checkout : "/srv/rakazo";
@@ -996,7 +1001,7 @@ function snapshotOf(result: { stdout: string }) {
   return result.stdout.split("written to ")[1]!.split("\n")[0]!;
 }
 
-describe("encrypted production backups", { timeout: 20_000 }, () => {
+describe.skipIf(!linuxHost)("encrypted production backups", { timeout: 20_000 }, () => {
   it.each([false, true])(
     "streams every artifact through age without plaintext on disk (file: %s)",
     (fromFile) => {
@@ -1113,7 +1118,7 @@ describe("encrypted production backups", { timeout: 20_000 }, () => {
   );
 });
 
-describe("off-site copies", { timeout: 20_000 }, () => {
+describe.skipIf(!linuxHost)("off-site copies", { timeout: 20_000 }, () => {
   const remote = "offsite:rakazo/";
   const remoteDir = (f: ReturnType<typeof fixture>) => path.join(f.env.FAKE_REMOTE, "rakazo");
   const rcloneCalls = (f: ReturnType<typeof fixture>) =>
@@ -1189,35 +1194,39 @@ const realAge = ["age", "age-keygen"].every(
   (tool) => spawnSync("/bin/sh", ["-c", `command -v ${tool}`]).status === 0,
 );
 
-describe.skipIf(!realAge)("encrypted production backups with real age", { timeout: 20_000 }, () => {
-  it("round-trips through a real age identity", () => {
-    const f = fixture();
-    const tools = path.join(f.root, "real-age");
-    mkdirSync(tools);
-    for (const tool of ["age", "age-keygen"]) {
-      const located = execFileSync("/bin/sh", ["-c", `command -v ${tool}`], { encoding: "utf8" });
-      symlinkSync(located.trim(), path.join(tools, tool));
-    }
-    rmSync(path.join(f.root, "bin/age"));
-    const key = path.join(f.root, "backup.key");
-    execFileSync(path.join(tools, "age-keygen"), ["-o", key], { stdio: "ignore" });
-    const recipient = execFileSync(path.join(tools, "age-keygen"), ["-y", key], {
-      encoding: "utf8",
-    }).trim();
-    const PATH = `${tools}${path.delimiter}${f.env.PATH}`;
-    const result = f.run("infra/compose/backup-prod.sh", [], {
-      PATH,
-      RAKAZO_BACKUP_AGE_RECIPIENTS: recipient,
+describe.skipIf(!realAge || !linuxHost)(
+  "encrypted production backups with real age",
+  { timeout: 20_000 },
+  () => {
+    it("round-trips through a real age identity", () => {
+      const f = fixture();
+      const tools = path.join(f.root, "real-age");
+      mkdirSync(tools);
+      for (const tool of ["age", "age-keygen"]) {
+        const located = execFileSync("/bin/sh", ["-c", `command -v ${tool}`], { encoding: "utf8" });
+        symlinkSync(located.trim(), path.join(tools, tool));
+      }
+      rmSync(path.join(f.root, "bin/age"));
+      const key = path.join(f.root, "backup.key");
+      execFileSync(path.join(tools, "age-keygen"), ["-o", key], { stdio: "ignore" });
+      const recipient = execFileSync(path.join(tools, "age-keygen"), ["-y", key], {
+        encoding: "utf8",
+      }).trim();
+      const PATH = `${tools}${path.delimiter}${f.env.PATH}`;
+      const result = f.run("infra/compose/backup-prod.sh", [], {
+        PATH,
+        RAKAZO_BACKUP_AGE_RECIPIENTS: recipient,
+      });
+      expect(result.status, result.stderr).toBe(0);
+      const snapshot = snapshotOf(result);
+      const dump = execFileSync(
+        path.join(tools, "age"),
+        ["--decrypt", "-i", key, path.join(snapshot, "rakazo.dump.age")],
+        { encoding: "utf8" },
+      );
+      expect(dump).toContain("fake custom-format dump");
+      const drill = f.run("infra/compose/backup-drill.sh", [snapshot, key], { PATH });
+      expect(drill.status, drill.stderr).toBe(0);
     });
-    expect(result.status, result.stderr).toBe(0);
-    const snapshot = snapshotOf(result);
-    const dump = execFileSync(
-      path.join(tools, "age"),
-      ["--decrypt", "-i", key, path.join(snapshot, "rakazo.dump.age")],
-      { encoding: "utf8" },
-    );
-    expect(dump).toContain("fake custom-format dump");
-    const drill = f.run("infra/compose/backup-drill.sh", [snapshot, key], { PATH });
-    expect(drill.status, drill.stderr).toBe(0);
-  });
-});
+  },
+);
