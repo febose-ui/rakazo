@@ -507,6 +507,8 @@ function SpaceShell() {
   );
   const workingRuns = currentRuns.filter((run) => isRunWorking(run.status));
   const transcriptRunning = workingRuns.length > 0;
+  const emptyChat =
+    activeSnapshot != null && activeSnapshot.messages.length === 0 && !transcriptRunning;
   const composerRunning = currentRuns.some((run) => isActive(run.status));
   const transcript = useMemo(
     () => foldPeerReplies(activeSnapshot?.messages ?? [], { includePeerReceipts: true }),
@@ -1047,9 +1049,7 @@ function SpaceShell() {
               transcript={transcript}
               showToolActivity={showToolActivity}
               olderCursor={activeSnapshot?.olderCursor ?? null}
-              greeting={
-                activeSnapshot != null && activeSnapshot.messages.length === 0 && !transcriptRunning
-              }
+              greeting={emptyChat}
               unreadAfterSeq={read.unreadAfterSeq}
               loadingOlder={loadingOlder}
               answerableAskIds={answerableAskIds}
@@ -1084,8 +1084,9 @@ function SpaceShell() {
           )}
         </div>
         {active || activeGroup ? (
-          // Let messages continue behind the composer's rounded top corners.
-          <div className="pointer-events-none relative z-30 -mt-7">
+          // Let messages continue behind the composer's rounded top corners. An empty chat
+          // gives the composer half the height so it rises to the middle under the greeting.
+          <div className={`pointer-events-none relative z-30 -mt-7 ${emptyChat ? "flex-1" : ""}`}>
             {recordingSkill ? (
               <div className="pointer-events-auto bg-background px-6 pb-2 text-center text-[13px] text-destructive">
                 <Trans>Teaching in progress. Stop teaching before sending a new message.</Trans>

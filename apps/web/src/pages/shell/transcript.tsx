@@ -519,11 +519,8 @@ export const Transcript = memo(function Transcript({
           </Button>
         ) : null}
         {greeting ? (
-          <div
-            data-testid="chat-greeting"
-            className="flex flex-1 items-center justify-center pb-16"
-          >
-            <h2 className="text-balance text-center text-3xl font-semibold tracking-tight text-foreground">
+          <div data-testid="chat-greeting" className="flex flex-1 items-end justify-center pb-6">
+            <h2 className="text-balance text-center text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               {t`What do you want to know?`}
             </h2>
           </div>
