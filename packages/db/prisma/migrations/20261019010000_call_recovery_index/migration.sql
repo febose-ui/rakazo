@@ -1,1 +1,0 @@
-CREATE INDEX IF NOT EXISTS "messages_call_recovery_idx" ON "messages" ((blocks #> ARRAY['0','status']), "createdAt") WHERE role = 'bot' AND "clientNonce" LIKE 'call:%' AND "clientNonce" LIKE '%:request';
