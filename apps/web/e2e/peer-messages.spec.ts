@@ -10,8 +10,10 @@ test("shows peer lines in transcript and opens view-only peer chat", async ({ pa
   await page.waitForURL(/\/app\/[^/]+$/);
 
   const chiefId = activeBotId(page);
-  await rpc(page, "bots/create", {
+  await rpc(page, "bots/update", { botId: chiefId, color: "#A855F7" });
+  const researcher = await rpc<{ id: string }>(page, "bots/create", {
     name: "Researcher",
+    color: "#3B82F6",
     description: "",
     instructions: "",
     notifyOnFinish: true,
@@ -20,7 +22,9 @@ test("shows peer lines in transcript and opens view-only peer chat", async ({ pa
   await expect(page.getByRole("combobox", { name: "Message Chief" })).toBeVisible();
 
   const composer = page.getByRole("combobox", { name: "Message Chief" });
-  await composer.fill("message the bot named Researcher saying peer-exchange-alpha");
+  await composer.fill(
+    `message the bot named Researcher saying peer-exchange-alpha ${"Keep the exchange easy to follow with readable messages. ".repeat(12)}`,
+  );
   await composer.press("Enter");
 
   await expect
@@ -141,6 +145,25 @@ test("shows peer lines in transcript and opens view-only peer chat", async ({ pa
   expect(
     await peerTranscript.evaluate((element) => element.scrollWidth <= element.clientWidth),
   ).toBe(true);
+  const sentBubble = peerTranscript.locator(`[data-sender-id="${chiefId}"]`).first();
+  const receivedBubble = peerTranscript.locator(`[data-sender-id="${researcher.id}"]`).first();
+  const assertPeerAppearance = async () => {
+    await expect(sentBubble.locator(".rakazo-organic-avatar")).toBeVisible();
+    await expect(receivedBubble.locator(".rakazo-organic-avatar")).toBeVisible();
+    const background = (bubble: typeof sentBubble) =>
+      bubble.evaluate((element) => getComputedStyle(element).backgroundColor);
+    expect(await background(sentBubble)).not.toBe(await background(receivedBubble));
+    for (const bubble of await peerTranscript.getByTestId("peer-message-bubble").all()) {
+      const box = (await bubble.boundingBox())!;
+      expect(box.width).toBeLessThanOrEqual(624);
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+    }
+    expect(
+      await peerTranscript.evaluate((element) => element.scrollWidth <= element.clientWidth),
+    ).toBe(true);
+  };
+  await assertPeerAppearance();
   await captureScreenshot(page, testInfo, "peer-view-only");
 
   await close.click();
@@ -208,7 +231,15 @@ test("shows peer lines in transcript and opens view-only peer chat", async ({ pa
   // macOS draws the traffic lights from x=16 to about x=68 in the window's top-left corner.
   expect(avatarsLeft).toBeGreaterThan(80);
   await assertPeerWidth();
-  await captureScreenshot(page, testInfo, "peer-view-only-macos-desktop");
+  await page.setViewportSize({ width: 2048, height: 900 });
+  for (const theme of ["light", "dark"]) {
+    await page.evaluate(
+      (theme) => document.documentElement.setAttribute("data-theme", theme),
+      theme,
+    );
+    await assertPeerAppearance();
+    await captureScreenshot(page, testInfo, `peer-view-only-macos-desktop-${theme}`);
+  }
 });
 
 const foldedReplyText = "on it. i will work this in the background";
