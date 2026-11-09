@@ -603,6 +603,10 @@ msgstr "הוספת מפתח גישה"
 msgid "Add provider"
 msgstr "הוספת ספק"
 
+#: src/components/ApprovalRulesSettings.tsx
+msgid "Add rule"
+msgstr ""
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "הוספת שרת"
@@ -4101,6 +4105,10 @@ msgid "Needs an OAuth client ID"
 msgstr "נדרש מזהה לקוח OAuth"
 
 #: src/pages/ActivityList.tsx
+msgid "Needs attention"
+msgstr "דורש תשומת לב"
+
+#: src/pages/ActivityList.tsx
 msgid "Needs input"
 msgstr "ממתין לקלט"
 
@@ -4348,10 +4356,6 @@ msgstr "עדיין אין זיכרונות"
 #: src/pages/shell/bot-panel.tsx
 msgid "Notifications"
 msgstr "התראות"
-
-#: src/pages/ActivityList.tsx
-msgid "Now"
-msgstr "עכשיו"
 
 #: src/pages/McpOAuthCallback.tsx
 msgid "OAuth authorization was cancelled."
@@ -5358,6 +5362,7 @@ msgstr "כמו {botName}"
 msgid "Saturday"
 msgstr "שבת"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/components/AskCard.tsx
 #: src/components/ComputerProviderSettings.tsx
 #: src/components/PasskeySettings.tsx
@@ -6406,6 +6411,7 @@ msgstr ""
 msgid "Tool arguments must be JSON"
 msgstr ""
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/pages/RoutineEditor.tsx
 msgid "Tool name"
 msgstr "שם הכלי"
@@ -6513,6 +6519,10 @@ msgstr "ביטול השתקה"
 #: src/pages/BotContextMenu.tsx
 msgid "Unpin"
 msgstr "ביטול הצמדה"
+
+#: src/pages/ActivityList.tsx
+msgid "Unread"
+msgstr "לא נקראו"
 
 #. placeholder {0}: pending.file.name
 #: src/pages/shell/use-composer-actions.ts
@@ -6852,6 +6862,10 @@ msgstr "לא יבוצע"
 #: src/components/SignupSurvey.tsx
 msgid "Work"
 msgstr ""
+
+#: src/pages/ActivityList.tsx
+msgid "Working"
+msgstr "בעבודה"
 
 #: src/pages/shell/agent-import.tsx
 msgid "Working instructions"

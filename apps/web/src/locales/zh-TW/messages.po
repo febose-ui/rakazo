@@ -604,6 +604,10 @@ msgstr "新增通行金鑰"
 msgid "Add provider"
 msgstr "新增供應商"
 
+#: src/components/ApprovalRulesSettings.tsx
+msgid "Add rule"
+msgstr ""
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "新增伺服器"
@@ -4102,6 +4106,10 @@ msgid "Needs an OAuth client ID"
 msgstr "需要 OAuth 用戶端 ID"
 
 #: src/pages/ActivityList.tsx
+msgid "Needs attention"
+msgstr "需要處理"
+
+#: src/pages/ActivityList.tsx
 msgid "Needs input"
 msgstr "需要輸入"
 
@@ -4349,10 +4357,6 @@ msgstr "尚無記憶"
 #: src/pages/shell/bot-panel.tsx
 msgid "Notifications"
 msgstr "通知"
-
-#: src/pages/ActivityList.tsx
-msgid "Now"
-msgstr "現在"
 
 #: src/pages/McpOAuthCallback.tsx
 msgid "OAuth authorization was cancelled."
@@ -5359,6 +5363,7 @@ msgstr "與 {botName} 相同"
 msgid "Saturday"
 msgstr "週六"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/components/AskCard.tsx
 #: src/components/ComputerProviderSettings.tsx
 #: src/components/PasskeySettings.tsx
@@ -6407,6 +6412,7 @@ msgstr "工具參數必須是 JSON 物件"
 msgid "Tool arguments must be JSON"
 msgstr "工具參數必須是 JSON"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/pages/RoutineEditor.tsx
 msgid "Tool name"
 msgstr "工具名稱"
@@ -6514,6 +6520,10 @@ msgstr "取消靜音"
 #: src/pages/BotContextMenu.tsx
 msgid "Unpin"
 msgstr "取消置頂"
+
+#: src/pages/ActivityList.tsx
+msgid "Unread"
+msgstr "未讀"
 
 #. placeholder {0}: pending.file.name
 #: src/pages/shell/use-composer-actions.ts
@@ -6853,6 +6863,10 @@ msgstr "不處理"
 #: src/components/SignupSurvey.tsx
 msgid "Work"
 msgstr "工作"
+
+#: src/pages/ActivityList.tsx
+msgid "Working"
+msgstr "工作中"
 
 #: src/pages/shell/agent-import.tsx
 msgid "Working instructions"

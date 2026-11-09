@@ -603,6 +603,10 @@ msgstr "पासकी जोड़ें"
 msgid "Add provider"
 msgstr "प्रोवाइडर जोड़ें"
 
+#: src/components/ApprovalRulesSettings.tsx
+msgid "Add rule"
+msgstr ""
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "सर्वर जोड़ें"
@@ -4101,6 +4105,10 @@ msgid "Needs an OAuth client ID"
 msgstr "OAuth क्लाइंट ID चाहिए"
 
 #: src/pages/ActivityList.tsx
+msgid "Needs attention"
+msgstr "ध्यान देने की ज़रूरत"
+
+#: src/pages/ActivityList.tsx
 msgid "Needs input"
 msgstr "इनपुट चाहिए"
 
@@ -4348,10 +4356,6 @@ msgstr "अभी तक कुछ याद नहीं किया गया
 #: src/pages/shell/bot-panel.tsx
 msgid "Notifications"
 msgstr "सूचनाएं"
-
-#: src/pages/ActivityList.tsx
-msgid "Now"
-msgstr "अभी"
 
 #: src/pages/McpOAuthCallback.tsx
 msgid "OAuth authorization was cancelled."
@@ -5358,6 +5362,7 @@ msgstr "{botName} जैसा"
 msgid "Saturday"
 msgstr "शनिवार"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/components/AskCard.tsx
 #: src/components/ComputerProviderSettings.tsx
 #: src/components/PasskeySettings.tsx
@@ -6406,6 +6411,7 @@ msgstr "टूल आर्ग्युमेंट JSON ऑब्जेक्�
 msgid "Tool arguments must be JSON"
 msgstr "टूल आर्ग्युमेंट JSON होने चाहिए"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/pages/RoutineEditor.tsx
 msgid "Tool name"
 msgstr "टूल का नाम"
@@ -6513,6 +6519,10 @@ msgstr "अनम्यूट करें"
 #: src/pages/BotContextMenu.tsx
 msgid "Unpin"
 msgstr "पिन हटाएं"
+
+#: src/pages/ActivityList.tsx
+msgid "Unread"
+msgstr "अपठित"
 
 #. placeholder {0}: pending.file.name
 #: src/pages/shell/use-composer-actions.ts
@@ -6852,6 +6862,10 @@ msgstr ""
 #: src/components/SignupSurvey.tsx
 msgid "Work"
 msgstr ""
+
+#: src/pages/ActivityList.tsx
+msgid "Working"
+msgstr "काम जारी"
 
 #: src/pages/shell/agent-import.tsx
 msgid "Working instructions"
