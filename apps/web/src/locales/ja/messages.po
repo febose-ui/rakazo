@@ -603,6 +603,10 @@ msgstr "パスキーを追加"
 msgid "Add provider"
 msgstr "プロバイダーを追加"
 
+#: src/components/ApprovalRulesSettings.tsx
+msgid "Add rule"
+msgstr ""
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "サーバーを追加"
@@ -5358,6 +5362,7 @@ msgstr "{botName}と同じ"
 msgid "Saturday"
 msgstr "土曜日"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/components/AskCard.tsx
 #: src/components/ComputerProviderSettings.tsx
 #: src/components/PasskeySettings.tsx
@@ -6406,6 +6411,7 @@ msgstr "ツールの引数はJSONオブジェクトである必要がありま�
 msgid "Tool arguments must be JSON"
 msgstr "ツールの引数はJSONである必要があります"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/pages/RoutineEditor.tsx
 msgid "Tool name"
 msgstr "ツール名"
