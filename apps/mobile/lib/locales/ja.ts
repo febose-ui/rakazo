@@ -1,4 +1,6 @@
 export const JA_MESSAGES: Record<string, string> = {
+  "Add rule": "ルールを追加",
+  "Tool name": "ツール名",
   "Daily check-ins on unfinished work": "未完了の作業を毎日確認",
   "Pages this group builds for you appear here.":
     "このグループが作成したページがここに表示されます。",
@@ -258,7 +260,6 @@ export const JA_MESSAGES: Record<string, string> = {
   "No matching bots": "一致するボットはありません",
   "No messages yet": "まだメッセージはありません",
   "No results": "結果はありません",
-  Now: "たった今",
   Personal: "個人",
   Recent: "最近",
   Search: "検索",
@@ -680,6 +681,7 @@ export const JA_MESSAGES: Record<string, string> = {
   "Live working status": "作業状況をライブ表示",
   More: "その他",
   "Needs attention": "要対応",
+  Unread: "未読",
   "Notification settings": "通知設定",
   "Get notified when this Bot finishes or needs input":
     "このボットが完了したときや入力が必要なときに通知を受け取る",

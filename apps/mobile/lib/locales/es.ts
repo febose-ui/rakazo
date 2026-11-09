@@ -1,4 +1,6 @@
 export const ES_MESSAGES: Record<string, string> = {
+  "Add rule": "Añadir regla",
+  "Tool name": "Nombre de la herramienta",
   "Daily check-ins on unfinished work": "Seguimiento diario del trabajo pendiente",
   "Pages this group builds for you appear here.":
     "Las páginas que este grupo cree para ti aparecerán aquí.",
@@ -261,7 +263,6 @@ export const ES_MESSAGES: Record<string, string> = {
   "No matching bots": "No hay bots que coincidan",
   "No messages yet": "Aún no hay mensajes",
   "No results": "Sin resultados",
-  Now: "Ahora",
   Personal: "Personal",
   Recent: "Recientes",
   Search: "Buscar",
@@ -658,6 +659,7 @@ export const ES_MESSAGES: Record<string, string> = {
   "Live working status": "Estado del trabajo en vivo",
   More: "Más",
   "Needs attention": "Requiere atención",
+  Unread: "No leídos",
   "Notification settings": "Configuración de notificaciones",
   "Get notified when this Bot finishes or needs input":
     "Recibe un aviso cuando este bot termine o necesite una respuesta",

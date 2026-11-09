@@ -28,7 +28,7 @@ function candidate(status: "queued" | "waiting_input" | "waiting_takeover", hour
     botId: "bot-1",
     userId: "user-1",
     taskId: "task-1",
-    bot: { name: "Ada", notifyOnFinish: true },
+    bot: { name: "Ada", color: "blue", avatarSet: "organic", notifyOnFinish: true },
     thread: { groupId: null as string | null },
   };
 }
@@ -98,6 +98,7 @@ describe("reconcileStuckWork", () => {
         body: "This has been waiting on you.",
         botId: "bot-1",
         threadId: "thread-1",
+        sender: expect.objectContaining({ botId: "bot-1", name: "Ada" }),
       },
       expect.objectContaining({ spaceId: "space-1", userId: "user-1" }),
     );

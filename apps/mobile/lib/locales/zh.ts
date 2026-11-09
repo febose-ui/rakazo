@@ -1,4 +1,6 @@
 export const ZH_MESSAGES: Record<string, string> = {
+  "Add rule": "添加规则",
+  "Tool name": "工具名称",
   "Daily check-ins on unfinished work": "每天跟进未完成的工作",
   "Pages this group builds for you appear here.": "此群组为你创建的页面会显示在这里。",
   Deleted: "已删除",
@@ -572,6 +574,7 @@ export const ZH_MESSAGES: Record<string, string> = {
   "Move to": "移动到",
   Name: "名称",
   "Needs attention": "需要处理",
+  Unread: "未读",
   "Needs input": "等待输入",
   "Needs takeover": "等待接管",
   "New password": "新密码",
@@ -594,7 +597,6 @@ export const ZH_MESSAGES: Record<string, string> = {
   "No messages yet": "还没有消息",
   "No results": "没有结果",
   "Not now": "暂不",
-  Now: "现在",
   Notifications: "通知",
   "No longer active": "已失效",
   "Notification settings": "通知设置",

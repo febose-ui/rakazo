@@ -1,4 +1,6 @@
 export const ZH_TW_MESSAGES: Record<string, string> = {
+  "Add rule": "新增規則",
+  "Tool name": "工具名稱",
   "Daily check-ins on unfinished work": "每天追蹤未完成的工作",
   "Pages this group builds for you appear here.": "此群組為你建立的頁面會顯示在這裡。",
   Deleted: "已刪除",
@@ -550,6 +552,7 @@ export const ZH_TW_MESSAGES: Record<string, string> = {
   "Move to": "移動到",
   Name: "名稱",
   "Needs attention": "需要處理",
+  Unread: "未讀",
   "Needs input": "等待輸入",
   "Needs takeover": "等待接管",
   "New password": "新密碼",
@@ -570,7 +573,6 @@ export const ZH_TW_MESSAGES: Record<string, string> = {
   "No messages yet": "還沒有訊息",
   "No results": "沒有結果",
   "Not now": "暫不",
-  Now: "現在",
   Notifications: "通知",
   "No longer active": "已失效",
   "Notification settings": "通知設定",

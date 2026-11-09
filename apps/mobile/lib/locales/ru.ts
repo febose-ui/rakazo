@@ -1,4 +1,6 @@
 export const RU_MESSAGES: Record<string, string> = {
+  "Add rule": "Добавить правило",
+  "Tool name": "Название инструмента",
   "Daily check-ins on unfinished work": "Ежедневные напоминания о незавершённой работе",
   "Pages this group builds for you appear here.":
     "Здесь появятся страницы, которые эта группа создаст для вас.",
@@ -594,6 +596,7 @@ export const RU_MESSAGES: Record<string, string> = {
   "Move to": "Переместить в",
   Name: "Имя",
   "Needs attention": "Требует внимания",
+  Unread: "Непрочитанные",
   "Needs input": "Требуется ввод данных",
   "Needs takeover": "Ожидает передачи управления",
   "New password": "Новый пароль",
@@ -615,7 +618,6 @@ export const RU_MESSAGES: Record<string, string> = {
   "No messages yet": "Сообщений пока нет",
   "No results": "Нет результатов",
   "Not now": "Не сейчас",
-  Now: "Сейчас",
   Notifications: "Уведомления",
   "No longer active": "Больше не активно",
   "Notification settings": "Настройки уведомлений",

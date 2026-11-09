@@ -603,6 +603,10 @@ msgstr "Добавить ключ доступа"
 msgid "Add provider"
 msgstr "Добавить поставщика"
 
+#: src/components/ApprovalRulesSettings.tsx
+msgid "Add rule"
+msgstr ""
+
 #: src/pages/McpServersOverlay.tsx
 msgid "Add server"
 msgstr "Добавить сервер"
@@ -4101,6 +4105,10 @@ msgid "Needs an OAuth client ID"
 msgstr "Нужен идентификатор клиента OAuth"
 
 #: src/pages/ActivityList.tsx
+msgid "Needs attention"
+msgstr "Требует внимания"
+
+#: src/pages/ActivityList.tsx
 msgid "Needs input"
 msgstr "Требуется ввод данных"
 
@@ -4348,10 +4356,6 @@ msgstr "Пока ничего не запомнено"
 #: src/pages/shell/bot-panel.tsx
 msgid "Notifications"
 msgstr "Уведомления"
-
-#: src/pages/ActivityList.tsx
-msgid "Now"
-msgstr "Сейчас"
 
 #: src/pages/McpOAuthCallback.tsx
 msgid "OAuth authorization was cancelled."
@@ -5358,6 +5362,7 @@ msgstr "Как у {botName}"
 msgid "Saturday"
 msgstr "суббота"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/components/AskCard.tsx
 #: src/components/ComputerProviderSettings.tsx
 #: src/components/PasskeySettings.tsx
@@ -6406,6 +6411,7 @@ msgstr "Аргументы должны быть объектом JSON"
 msgid "Tool arguments must be JSON"
 msgstr "Аргументы должны быть в формате JSON"
 
+#: src/components/ApprovalRulesSettings.tsx
 #: src/pages/RoutineEditor.tsx
 msgid "Tool name"
 msgstr "Название инструмента"
@@ -6513,6 +6519,10 @@ msgstr "Включить микрофон"
 #: src/pages/BotContextMenu.tsx
 msgid "Unpin"
 msgstr "Открепить"
+
+#: src/pages/ActivityList.tsx
+msgid "Unread"
+msgstr "Непрочитанные"
 
 #. placeholder {0}: pending.file.name
 #: src/pages/shell/use-composer-actions.ts
@@ -6852,6 +6862,10 @@ msgstr ""
 #: src/components/SignupSurvey.tsx
 msgid "Work"
 msgstr ""
+
+#: src/pages/ActivityList.tsx
+msgid "Working"
+msgstr "Выполняется"
 
 #: src/pages/shell/agent-import.tsx
 msgid "Working instructions"
